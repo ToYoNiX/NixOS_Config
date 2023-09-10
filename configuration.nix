@@ -8,10 +8,32 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./boot.nix
+      ./sway.nix
+      ./i3.nix
     ];
 
-  networking.hostName = "device"; # Define your hostname.
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  security.polkit.enable = true;
+  systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
+  networking.hostName = "nix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -44,7 +66,6 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -79,7 +100,7 @@
   users.users.assem = {
     isNormalUser = true;
     description = "Assem Mohamed";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" ];
     # packages = with pkgs; [
     #   thunderbird
     # ];
@@ -94,16 +115,27 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     neofetch
-
+    pcmanfm
+    gparted
+    polkit_gnome
     google-chrome
-
-    gnome.gnome-tweaks
-
+    obs-studio
     git
     vscode
     python39
     gcc13
     gdb
+
+    xorg.xhost
+    xorg.libXext
+    xorg.libxcb
+    libdbusmenu
+    pixman
+    libconfig
+    libGL
+    hyperscan
+    libev
+    uthash
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
