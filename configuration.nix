@@ -170,6 +170,12 @@
     polkit_gnome
     obs-studio
     obsidian
+
+    # Theming
+    pywal
+    wpgtk
+    lxappearance
+    qt5ct
  
     # Virtialization utils
     qemu
@@ -201,6 +207,11 @@
     libev
     uthash
   ];
+
+  environment.variables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+  };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
