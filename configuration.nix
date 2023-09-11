@@ -10,15 +10,9 @@
 
       # My root and boot partitions
       ./sysPartitions/pc.nix
-      #./sysPartitions/laptop.nix
 
       # Choose between passthrogh the gpu or use it
       ./options/passGPU.nix
-      # OR
-      #./options/useGPU.nix
-
-      # Choose the DE
-      ./desktopEnvironments/dwm.nix
     ];
 
   # Bootloader.
@@ -101,9 +95,11 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.desktopManager.xterm.enable = false;
   services.xserver.displayManager.lightdm.enable = true;
+
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
 
   # USB Automounting
   services.gvfs.enable = true;
@@ -170,12 +166,29 @@
     polkit_gnome
     obs-studio
     obsidian
+    vlc
+    kitty # Terminal emulator
+    rofi # Application launcher most people use
+    picom-next # Compositor                            
+    i3blocks # Bar
+    volumeicon
+    networkmanagerapplet
 
     # Theming
     pywal
     wpgtk
     lxappearance
     qt5ct
+    python311Packages.pygobject3
+    gobject-introspection
+    python311Packages.pillow
+    python311Packages.libxslt
+    libxslt
+    xsettingsd
+    gtk-engine-murrine
+    python2Full
+    wrapGAppsHook
+    gtk3
  
     # Virtialization utils
     qemu
@@ -199,6 +212,9 @@
     xorg.xhost
     xorg.libXext
     xorg.libxcb
+    xorg.xrdb
+    lxde.lxrandr
+    xrq
     libdbusmenu
     pixman
     libconfig
@@ -207,6 +223,11 @@
     libev
     uthash
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.6"
+  ];
+
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
