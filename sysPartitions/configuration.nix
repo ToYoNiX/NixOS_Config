@@ -10,9 +10,15 @@
 
       # My root and boot partitions
       ./sysPartitions/pc.nix
+      #./sysPartitions/laptop.nix
 
       # Choose between passthrogh the gpu or use it
       ./options/passGPU.nix
+      # OR
+      #./options/useGPU.nix
+
+      # Choose the DE
+      ./desktopEnvironments/dwm.nix
     ];
 
   # Bootloader.
@@ -95,11 +101,9 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.displayManager.lightdm.enable = true;
 
-  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.lightdm.enable = true;
 
   # USB Automounting
   services.gvfs.enable = true;
@@ -137,7 +141,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  # services.xserver.libinput.enable = true
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.assem = {
@@ -159,38 +163,13 @@
     vim
     wget
     htop
-    sysstat
     pciutils
     neofetch
-    pcmanfm ranger
+    pcmanfm
     gparted
     polkit_gnome
     obs-studio
     obsidian
-    mpv mpd
-    cava
-    kitty # Terminal emulator
-    rofi # Application launcher most people use
-    picom-next # Compositor                            
-    i3blocks-gaps # Bar
-    ncpamixer
-    networkmanagerapplet
-    xclip
-
-    # Theming
-    pywal
-    wpgtk
-    lxappearance
-    qt5ct
-    python311Packages.pygobject3
-    python311Packages.pillow
-    python311Packages.libxslt
-    libxslt
-    xsettingsd
-    gtk-engine-murrine
-    python2Full
-    wrapGAppsHook
-    gtk3
  
     # Virtialization utils
     qemu
@@ -204,22 +183,16 @@
     google-chrome # Browser
     
     # Dev utils
-    git # Version control util
-    gcc gdb # C, C++ compilers and debugger
-    jetbrains.clion cmake
-    jetbrains.pycharm-professional
-    pypy3  python39 # Python compilers
-    vscode-fhs # Text editor
-    python311Packages.venvShellHook
-    python311Packages.pip
+    git
+    gcc # C and C++ compiler
+    gdb # Debugger for C and C++
+    python39 # Puthon compiler
+    vscode # Lightweight test editor
 
     # Xorg utils
     xorg.xhost
     xorg.libXext
     xorg.libxcb
-    xorg.xrdb
-    lxde.lxrandr
-    xrq
     libdbusmenu
     pixman
     libconfig
@@ -228,16 +201,6 @@
     libev
     uthash
   ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "python-2.7.18.6"
-  ];
-
-
-  environment.variables = {
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-  };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
