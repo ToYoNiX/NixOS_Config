@@ -12,7 +12,7 @@
       ./sysPartitions/pc.nix
 
       # Choose between passthrogh the gpu or use it
-      ./options/passGPU.nix
+      ./discreteGPU/pass.nix # OR use.nix
     ];
 
   # Bootloader.
