@@ -161,6 +161,7 @@
     htop
     sysstat
     pciutils
+    killall
     neofetch
     pcmanfm ranger
     gparted
@@ -173,9 +174,10 @@
     rofi # Application launcher most people use
     picom-next # Compositor                            
     i3blocks-gaps # Bar
+    autotiling
     ncpamixer
     networkmanagerapplet
-    xclip
+    pulseaudio
 
     # Theming
     pywal
@@ -227,6 +229,7 @@
     hyperscan
     libev
     uthash
+    xclip
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
