@@ -2,43 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-
-      # My root and boot partitions
-      ./sysPartitions/pc.nix
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
 
       # Choose between passthrogh the gpu or use it
       ./discreteGPU/pass.nix # OR use.nix
+
+      # Choose window manager
+      ./windowManagers/i3.nix
     ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.supportedFilesystems = [ "ntfs" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp9s0.useDHCP = lib.mkDefault true;
-
-  # Apps architecture
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  
-  # CPU microcode
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # > NOTE
-  # The past section of this config is related to my hardware, So becareful while coping that.
 
   # Swap
   zramSwap = {
@@ -46,23 +22,9 @@
     memoryPercent = 125;
   };
 
-  # Polkit
-  security.polkit.enable = true;
-  systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -95,11 +57,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.displayManager.lightdm.enable = true;
-
-  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+  services.xserver.displayManager.sddm.enable = true;
 
   # USB Automounting
   services.gvfs.enable = true;
@@ -161,20 +119,15 @@
     htop
     sysstat
     pciutils
+    starship
     killall
     neofetch
-    pcmanfm ranger
-    gparted
-    polkit_gnome
     obs-studio
-    obsidian
+    gptfdisk
+    lxsession
     mpv mpd
     cava
-    kitty # Terminal emulator
-    rofi # Application launcher most people use
-    picom-next # Compositor                            
-    i3blocks-gaps # Bar
-    autotiling
+    kitty
     ncpamixer
     networkmanagerapplet
     pulseaudio
@@ -202,45 +155,38 @@
     obs-studio-plugins.looking-glass-obs
 
     # Std utils (web browser, file manager, ...)
-    pcmanfm # Lightweight file manager
+    pcmanfm ranger # Lightweight file managers
     google-chrome # Browser
     
     # Dev utils
     git # Version control util
     gcc gdb # C, C++ compilers and debugger
-    jetbrains.clion cmake
-    jetbrains.pycharm-professional
     pypy3  python39 # Python compilers
-    vscode-fhs # Text editor
+    vscode-fhs neovim # Text editors
     python311Packages.venvShellHook
     python311Packages.pip
-
-    # Xorg utils
-    xorg.xhost
-    xorg.libXext
-    xorg.libxcb
-    xorg.xrdb
-    lxde.lxrandr
-    xrq
-    libdbusmenu
-    pixman
-    libconfig
-    libGL
-    hyperscan
-    libev
-    uthash
-    xclip
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
   ];
 
-
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
 
+  fonts = {
+    fonts = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      font-awesome
+      source-han-sans
+      source-han-sans-japanese
+      source-han-serif-japanese
+      (nerdfonts.override { fonts = [ "Meslo" ]; })
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
