@@ -2,19 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
-
-{
+{ config, lib, pkgs, ... }: {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
       # Choose between passthrogh the gpu or use it
       ./discreteGPU/pass.nix # OR use.nix
-
-      # Choose window manager
-      ./windowManagers/i3.nix
     ];
+
+  # Enable flakes
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Swap
   zramSwap = {
@@ -25,6 +23,13 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  systemd = {
+    extraConfig = ''
+      DefaultTimeoutStopSec=10s
+    '';
+  }; 
+
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -58,6 +63,29 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
+
+  # Enable Hyprland
+  programs.hyprland = {
+    enable = true;
+    nvidiaPatches = true;
+    xwayland.enable = true;
+  };
+
+  environment = {
+    variables = {
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+    };
+
+    sessionVariables = {
+      # If cursor becomes invisible
+      #WLR_NO_HARDWARE_CURSORS = "1";
+
+      # Hint electron apps to use wayland
+      #NIXOS_OZONE_WL = "1";
+
+      TERMINAL = "kitty";
+    };
+  };
 
   # USB Automounting
   services.gvfs.enable = true;
@@ -114,7 +142,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Sys utils
-    vim
+    vim-full
     wget
     htop
     sysstat
@@ -125,9 +153,14 @@
     obs-studio
     gptfdisk
     lxsession
-    mpv mpd
+    mpv mpd yt-dlp
     cava
     kitty
+    wofi
+    waybar
+    jq
+    bobcat
+    wlroots
     ncpamixer
     networkmanagerapplet
     pulseaudio
@@ -170,10 +203,6 @@
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
   ];
-
-  environment.variables = {
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-  };
 
   fonts = {
     fonts = with pkgs; [
