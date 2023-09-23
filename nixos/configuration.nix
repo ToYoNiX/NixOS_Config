@@ -2,7 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, inputs, outputs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -13,8 +20,22 @@
       inputs.home-manager.nixosModules.home-manager
     ];
 
-  # Enable flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    # This will add each flake input as a registry
+    # To make nix3 commands consistent with your flake
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+
+    # This will additionally add your inputs to the system's legacy channels
+    # Making legacy nix commands consistent as well, awesome!
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+
+    settings = {
+      # Enable flakes and new 'nix' command
+      experimental-features = "nix-command flakes";
+      # Deduplicate and optimize nix store
+      auto-optimise-store = true;
+    };
+  };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -24,15 +45,23 @@
     };
   };
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      waybar = prev.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-        postPatch = (oldAttrs.postPatch or "") + ''
-          sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp'';
-      });
-    })
-  ];
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+        waybar = prev.waybar.overrideAttrs (oldAttrs: {
+          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+          postPatch = (oldAttrs.postPatch or "") + ''
+            sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp'';
+        });
+      })
+    ];
+
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+    };
+  };
 
   # Swap
   zramSwap = {
@@ -89,6 +118,7 @@
     enable = true;
     nvidiaPatches = true;
     xwayland.enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
   environment = {
@@ -154,9 +184,6 @@
     #   thunderbird
     # ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
