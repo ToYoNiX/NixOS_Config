@@ -2,17 +2,27 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, outputs, ... }: {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
       # Choose between passthrogh the gpu or use it
       ./discreteGPU/pass.nix # OR use.nix
+
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+      # Import your home-manager configuration
+      assem = import ../home-manager/home.nix;
+    };
+  };
 
   # Swap
   zramSwap = {
@@ -157,7 +167,6 @@
     cava
     kitty
     wofi
-    waybar
     jq
     bobcat
     wlroots
