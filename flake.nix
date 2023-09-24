@@ -34,8 +34,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
+    # Nix-Community Doom Emacs
+    doom-emacs = {
+      url = "github:nix-community/nix-doom-emacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Nixify your themes and make everything match nicely using nix-colors!
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
