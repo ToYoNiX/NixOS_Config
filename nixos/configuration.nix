@@ -189,7 +189,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Sys utils
-    vim-full
+    vim
     wget
     htop
     sysstat
@@ -199,18 +199,13 @@
     neofetch
     obs-studio
     gptfdisk
-    lxsession
     mpv mpd yt-dlp
     cava
     kitty
     wofi
     waybar
-    jq
-    bobcat
-    wlroots
     ncpamixer
     networkmanagerapplet
-    pulseaudio
  
     # Virtialization utils
     qemu
@@ -226,7 +221,7 @@
     # Dev utils
     git # Version control util
     gcc gdb # C, C++ compilers and debugger
-    pypy3 # Python compilers
+    pypy3 # Python compiler
     vscode-fhs neovim # Text editors
     python311Packages.venvShellHook
     python311Packages.pip
@@ -270,6 +265,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
