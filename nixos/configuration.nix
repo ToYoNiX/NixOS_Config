@@ -116,7 +116,7 @@
   # Enable Hyprland
   programs.hyprland = {
     enable = true;
-    nvidiaPatches = true;
+    enableNvidiaPatches = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
@@ -211,21 +211,6 @@
     ncpamixer
     networkmanagerapplet
     pulseaudio
-
-    # Theming
-    pywal
-    wpgtk
-    lxappearance
-    qt5ct
-    python311Packages.pygobject3
-    python311Packages.pillow
-    python311Packages.libxslt
-    libxslt
-    xsettingsd
-    gtk-engine-murrine
-    python2Full
-    wrapGAppsHook
-    gtk3
  
     # Virtialization utils
     qemu
@@ -241,18 +226,14 @@
     # Dev utils
     git # Version control util
     gcc gdb # C, C++ compilers and debugger
-    pypy3  python39 # Python compilers
+    pypy3 # Python compilers
     vscode-fhs neovim # Text editors
     python311Packages.venvShellHook
     python311Packages.pip
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "python-2.7.18.6"
-  ];
-
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
