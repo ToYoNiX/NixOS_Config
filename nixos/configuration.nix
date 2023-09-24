@@ -19,6 +19,23 @@
 
       inputs.home-manager.nixosModules.home-manager
     ];
+  
+  boot = {
+    # Bootloader
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    # Kernel
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  };
+
+  systemd = {
+    extraConfig = ''
+      DefaultTimeoutStopSec=10s
+    '';
+  };
 
   nix = {
     # This will add each flake input as a registry
@@ -69,18 +86,6 @@
     memoryPercent = 125;
   };
 
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
-  systemd = {
-    extraConfig = ''
-      DefaultTimeoutStopSec=10s
-    '';
-  }; 
-
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -109,10 +114,47 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  services = {
+    xserver ={
+      # Enable the X11 windowing system.
+      enable = true;
+      
+      # Display Manager
+      displayManager.sddm.enable = true;
+
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+
+      # Configure keymap in X11
+      layout = "us";
+      xkbVariant = "";
+    };
+
+    # USB Automounting
+    gvfs.enable = true;
+    devmon.enable = true;
+    udisks2.enable = true;
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
+  };
 
   # Enable Hyprland
   programs.hyprland = {
@@ -138,43 +180,9 @@
     };
   };
 
-  # USB Automounting
-  services.gvfs.enable = true;
-  services.devmon.enable = true;
-  services.udisks2.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Virtualisation
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.assem = {
@@ -192,7 +200,7 @@
     # Sys utils
     vim
     wget
-    htop
+    htop btop
     sysstat
     pciutils
     starship
@@ -221,8 +229,8 @@
     
     # Dev utils
     git # Version control util
-    gcc gdb # C, C++ compilers and debugger
-    pypy3 # Python compiler
+    gcc gdb # C, C++ compiler and debugger
+    pypy3 # Python compilers
     vscode-fhs neovim # Text editors
     python311Packages.venvShellHook
     python311Packages.pip
