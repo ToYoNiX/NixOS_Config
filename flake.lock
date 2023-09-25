@@ -20,7 +20,9 @@
       "inputs": {
         "doom-emacs": "doom-emacs_2",
         "doom-snippets": "doom-snippets",
-        "emacs-overlay": "emacs-overlay",
+        "emacs-overlay": [
+          "emacs-overlay"
+        ],
         "emacs-so-long": "emacs-so-long",
         "evil-escape": "evil-escape",
         "evil-markdown": "evil-markdown",
@@ -96,17 +98,16 @@
     "emacs-overlay": {
       "flake": false,
       "locked": {
-        "lastModified": 1676366521,
-        "narHash": "sha256-i4UAY8t9Au9SJtsgYppa3NHSVf1YkV6yqnNIQd+Km4g=",
+        "lastModified": 1695579880,
+        "narHash": "sha256-7gbbWin32G4Iv/H6I1HOp1kErI0hsUE7/Pob+LWFCtc=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "c16be6de78ea878aedd0292aa5d4a1ee0a5da501",
+        "rev": "1a83f945d03576aa6f160136f0ff6094ed6fed34",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "c16be6de78ea878aedd0292aa5d4a1ee0a5da501",
         "type": "github"
       }
     },
@@ -600,6 +601,7 @@
     "root": {
       "inputs": {
         "doom-emacs": "doom-emacs",
+        "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprwm-contrib": "hyprwm-contrib",

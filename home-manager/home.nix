@@ -38,6 +38,24 @@
     };
   };
 
+  # Theming
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Blue-dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "macchiato";
+      };
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
   # Set your username
   home = {
     username = "assem";

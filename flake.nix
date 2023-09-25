@@ -34,10 +34,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Emacs Overlays
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      flake = false;
+    };
+
     # Nix-Community Doom Emacs
     doom-emacs = {
       url = "github:nix-community/nix-doom-emacs";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.emacs-overlay.follows = "emacs-overlay";
     };
 
     # Nixify your themes and make everything match nicely using nix-colors!
