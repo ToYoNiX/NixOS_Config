@@ -16,6 +16,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # The Uncompromising Nix Code Formatter
+    alejandra = {
+      url = "github:kamadorueda/alejandra/3.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     # Nix Helper
     nh = {
       url = "github:viperml/nh";
@@ -62,9 +68,8 @@
   in {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
-
     nixosConfigurations = {
-      # Main desktop
+      # Desktop
       nixos =  lib.nixosSystem {
         modules = [ ./hosts/nixos ];
         specialArgs = { inherit inputs outputs; };
@@ -78,8 +83,7 @@
     #    pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
     #    extraSpecialArgs = {inherit inputs outputs;};
     #    modules = [
-    #      # > Our main home-manager configuration file <
-    #      ./home-manager/home.nix
+    #      ./home/home.nix
     #    ];
     #  };
     #};

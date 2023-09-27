@@ -59,7 +59,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
       # Import your home-manager configuration
-      assem = import ../../home;
+      assem = import ../../home-manager/home.nix;
     };
   };
 
@@ -137,7 +137,16 @@
     xserver ={
       # Enable the X11 windowing system.
       enable = true;
-      displayManager.startx.enable = true;
+      
+      # Display Manager
+      displayManager.sddm.enable = true;
+
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+
+      # Configure keymap in X11
+      layout = "us";
+      xkbVariant = "";
     };
 
     # USB Automounting
@@ -149,6 +158,14 @@
     printing.enable = true;
   };
 
+  # Enable Hyprland
+  programs.hyprland = {
+    enable = true;
+    enableNvidiaPatches = true;
+    xwayland.enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
+
   environment = {
     variables = {
       QT_QPA_PLATFORMTHEME = "qt5ct";
@@ -156,12 +173,12 @@
 
     sessionVariables = {
       # If cursor becomes invisible
-      WLR_NO_HARDWARE_CURSORS = "1";
+      #WLR_NO_HARDWARE_CURSORS = "1";
 
       # Hint electron apps to use wayland
       #NIXOS_OZONE_WL = "1";
 
-      TERMINAL = "alacritty";
+      TERMINAL = "kitty";
     };
   };
 
@@ -195,6 +212,8 @@
     gptfdisk
     mpv mpd yt-dlp
     cava
+    alacritty
+    wofi
     ncpamixer
     networkmanagerapplet
  
