@@ -1,14 +1,25 @@
 {
-    inputs,
-    lib,
-    config,
-    pkgs,
-    ...
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
 }: {
-    gtk = {
-        enable = true;
-        
-        theme.package = pkgs.adw-gtk3;
-        theme.name = "adw-gtk3";
+  gtk = {
+    enable = true;
+
+    theme = {
+      package = pkgs.nordic;
+      name = "Nordic-darker";
     };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "ePapirus-Dark";
+    };
+  };
 }

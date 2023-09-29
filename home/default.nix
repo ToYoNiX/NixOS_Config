@@ -16,6 +16,7 @@
     # ./nvim.nix
     ./hyprland.nix
     ./theming.nix
+    ./git.nix
   ];
 
   nixpkgs = {

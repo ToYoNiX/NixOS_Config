@@ -2,8 +2,8 @@
   description = "My nixos flake";
 
   nixConfig = {
-    extra-substituters = [ "https://cache.m7.rs" ];
-    extra-trusted-public-keys = [ "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg=" ];
+    extra-substituters = ["https://cache.m7.rs"];
+    extra-trusted-public-keys = ["cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg="];
   };
 
   inputs = {
@@ -21,7 +21,7 @@
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # Nix Helper
     nh = {
       url = "github:viperml/nh";
@@ -33,7 +33,7 @@
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # Community scripts and utilities for Hypr projects
     hyprwm-contrib = {
       url = "github:hyprwm/contrib";
@@ -70,9 +70,20 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       # Desktop
-      nixos =  lib.nixosSystem {
-        modules = [ ./hosts/nixos ];
-        specialArgs = { inherit inputs outputs; };
+      desktop = lib.nixosSystem {
+        modules = [
+          ./hosts
+          ./hosts/desktop
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
+
+      laptop = lib.nixosSystem {
+        modules = [
+          ./hosts
+          ./hosts/laptop
+        ];
+        specialArgs = {inherit inputs outputs;};
       };
     };
 

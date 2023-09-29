@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   inputs,
   outputs,
@@ -10,16 +6,10 @@
   pkgs,
   ...
 }: {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
-      # Choose between passthrogh the gpu or use it
-      ./discreteGPU/pass.nix # OR use.nix
-
-      inputs.home-manager.nixosModules.home-manager
-    ];
-  
   boot = {
     # Bootloader
     loader = {
@@ -56,10 +46,10 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       # Import your home-manager configuration
-      assem = import ../../home;
+      assem = import ../home;
     };
   };
 
@@ -68,9 +58,11 @@
       # Waybar overlay
       (final: prev: {
         waybar = prev.waybar.overrideAttrs (oldAttrs: {
-          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-          postPatch = (oldAttrs.postPatch or "") + ''
-            sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp'';
+          mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+          postPatch =
+            (oldAttrs.postPatch or "")
+            + ''
+              sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp'';
         });
       })
     ];
@@ -116,9 +108,10 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
+  sound.mediaKeys = {
+    enable = true;
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -134,7 +127,7 @@
   };
 
   services = {
-    xserver ={
+    xserver = {
       # Enable the X11 windowing system.
       enable = true;
       displayManager.startx.enable = true;
@@ -173,7 +166,7 @@
   users.users.assem = {
     isNormalUser = true;
     description = "Assem Mohamed";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" ];
+    extraGroups = ["networkmanager" "wheel" "video" "kvm" "input" "disk" "libvirtd"];
     # packages = with pkgs; [
     #   thunderbird
     # ];
@@ -185,7 +178,8 @@
     # Sys utils
     vim
     wget
-    htop btop
+    htop
+    btop
     sysstat
     pciutils
     starship
@@ -193,11 +187,13 @@
     neofetch
     obs-studio
     gptfdisk
-    mpv mpd yt-dlp
+    mpv
+    mpd
+    yt-dlp
     cava
     ncpamixer
     networkmanagerapplet
- 
+
     # Virtialization utils
     qemu
     OVMF
@@ -206,15 +202,26 @@
     obs-studio-plugins.looking-glass-obs
 
     # Std utils (web browser, file manager, ...)
-    pcmanfm ranger # Lightweight file managers
+    pcmanfm
+    ranger # Lightweight file managers
     google-chrome # Browser
     webcord
-    
+
     # Dev utils
-    git # Version control util
-    gcc gdb # C, C++ compiler and debugger
-    pypy3 # Python compilers
-    vscode-fhs neovim # Text editors
+    gcc
+    gdb # C, C++ compiler and debugger
+    pypy3
+    python311 # Python compilers
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+        ms-vscode.cpptools
+        ms-python.python
+        ms-python.vscode-pylance
+        jnoortheen.nix-ide
+        kamadorueda.alejandra
+      ];
+    })
+    neovim # Text editors
     python311Packages.venvShellHook
     python311Packages.pip
   ];
@@ -222,7 +229,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   fonts = {
@@ -234,7 +241,7 @@
       source-han-sans
       source-han-sans-japanese
       source-han-serif-japanese
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
+      (nerdfonts.override {fonts = ["Meslo"];})
     ];
   };
 

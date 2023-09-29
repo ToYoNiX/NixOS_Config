@@ -28,7 +28,7 @@
       exec-once = waybar
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor=,highrr,auto,auto
+      monitor=,highrr,auto,1
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -67,7 +67,7 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         rounding = 0
-        
+
         blur {
             enabled = true
             size = 3
@@ -129,18 +129,25 @@
 
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-      $mainMod = AlT 
+      $mainMod = AlT
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = $mainMod, Return, exec, alacritty 
-      bind = $mainMod SHIFT, Q, killactive, 
-      bind = $mainMod, M, exit, 
+      bind = $mainMod, Return, exec, alacritty
+      bind = $mainMod SHIFT, Q, killactive,
+      bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, dolphin
-      bind = $mainMod, V, togglefloating, 
+      bind = $mainMod, V, togglefloating,
       bind = $mainMod SHIFT, Return, exec, rofi -show drun -show-icons
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
       bind = $mainMod SHIFT, F, fullscreen
+
+      binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
+      binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+      bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+      bind =, XF86MonBrightnessDown, exec, light -U 10
+      bind =, XF86MonBrightnessUp, exec, light -A 10
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
