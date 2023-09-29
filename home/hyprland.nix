@@ -45,7 +45,7 @@
         follow_mouse = 1
 
         touchpad {
-            natural_scroll = no
+            natural_scroll = yes
         }
 
         sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
@@ -112,7 +112,7 @@
 
       gestures {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = off
+        workspace_swipe = on
       }
 
       # Example per-device config

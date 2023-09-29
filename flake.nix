@@ -22,6 +22,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # NUR Community Packages
+    nur = {
+      # Requires "nur.nixosModules.nur" to be added to the host modules
+      url = "github:nix-community/NUR";
+    };
+
+    # Fixes OpenGL With Other Distros
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Nix Helper
     nh = {
       url = "github:viperml/nh";
@@ -64,28 +76,23 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+
+    # Variables Used In Flake
+    vars = {
+      user = "assem";
+      location = "$HOME/.setup";
+      terminal = "alacritty";
+    };
+
     lib = nixpkgs.lib // home-manager.lib;
   in {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      # Desktop
-      desktop = lib.nixosSystem {
-        modules = [
-          ./hosts
-          ./hosts/desktop
-        ];
-        specialArgs = {inherit inputs outputs;};
-      };
-
-      laptop = lib.nixosSystem {
-        modules = [
-          ./hosts
-          ./hosts/laptop
-        ];
-        specialArgs = {inherit inputs outputs;};
-      };
-    };
+    nixosConfigurations = ( # NixOS Configurations
+      import ./hosts {
+        inherit inputs outputs vars lib;
+      }
+    );
 
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
