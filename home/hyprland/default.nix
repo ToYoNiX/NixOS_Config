@@ -6,13 +6,15 @@
   ...
 }: {
   imports = [
-    ./waybar.nix
+    ./../waybar
   ];
 
   home.packages = with pkgs; [
+    swaynotificationcenter
     rofi-wayland
     alacritty
-    swww
+    gtklock
+    swaybg
   ];
 
   wayland.windowManager.hyprland = {
@@ -22,10 +24,11 @@
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     extraConfig = ''
-
-      exec-once = swww-daemon
-      exec = swww img ~/Downloads/wallpaperflare.com_wallpaper.jpg
+      exec-once = swaync
+      exec-once = gtklock
+      exec-once = swaybg -i ~/Downloads/wallpaperflare.com_wallpaper.jpg
       exec-once = waybar
+      exec-once = lxsession
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor=,highrr,auto,1
@@ -36,89 +39,92 @@
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
-        kb_layout = us
-        kb_variant =
-        kb_model =
-        kb_options =
-        kb_rules =
+      kb_layout = us
+      kb_variant =
+      kb_model =
+      kb_options =
+      kb_rules =
 
-        follow_mouse = 1
+      follow_mouse = 1
 
-        touchpad {
-            natural_scroll = yes
-        }
+      touchpad {
+          natural_scroll = yes
+      }
 
-        sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+      sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
       }
 
       general {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
+      # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-        gaps_in = 5
-        gaps_out = 10
-        border_size = 2
-        col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-        col.inactive_border = rgba(595959aa)
+          gaps_in = 5
+          gaps_out = 10
+          border_size = 2
+          col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+          col.inactive_border = rgba(595959aa)
 
-        layout = dwindle
+          layout = dwindle
       }
 
       decoration {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-        rounding = 0
+          rounding = 0
 
-        blur {
-            enabled = true
-            size = 3
-            passes = 1
-        }
+          blur {
+              enabled = true
+              size = 3
+              passes = 1
+          }
 
-        active_opacity = 0.92;
-        inactive_opacity = 0.92;
-        fullscreen_opacity = 1.0;
+          active_opacity = 0.92;
+          inactive_opacity = 0.92;
+          fullscreen_opacity = 1.0;
 
-        drop_shadow = yes
-        shadow_range = 4
-        shadow_render_power = 3
-        col.shadow = rgba(1a1a1aee)
+          drop_shadow = yes
+          shadow_range = 4
+          shadow_render_power = 3
+          col.shadow = rgba(1a1a1aee)
       }
 
       animations {
-        enabled = yes
+        enabled = true
 
-        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        bezier = wind, 0.05, 0.9, 0.1, 1.05
+        bezier = winIn, 0.1, 1.1, 0.1, 1.1
+        bezier = winOut, 0.3, -0.3, 0, 1
+        bezier = liner, 1, 1, 1, 1
 
-        bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-
-        animation = windows, 1, 7, myBezier
-        animation = windowsOut, 1, 7, default, popin 80%
-        animation = border, 1, 10, default
-        animation = borderangle, 1, 8, default
-        animation = fade, 1, 7, default
-        animation = workspaces, 1, 6, default
+        animation = windows, 1, 6, wind, slide
+        animation = windowsIn, 1, 6, winIn, slide
+        animation = windowsOut, 1, 5, winOut, slide
+        animation = windowsMove, 1, 5, wind, slide
+        animation = border, 1, 1, liner
+        animation = borderangle, 1, 30, liner, loop
+        animation = fade, 1, 10, default
+        animation = workspaces, 1, 5, wind
       }
 
       dwindle {
-        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-        preserve_split = yes # you probably want this
+          # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+          pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+          preserve_split = yes # you probably want this
       }
 
       master {
-        # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = true
+          # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+          new_is_master = true
       }
 
       gestures {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = on
+          # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          workspace_swipe = on
       }
 
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
       device:epic-mouse-v1 {
-        sensitivity = -0.5
+          sensitivity = -0.5
       }
 
       # Example windowrule v1
@@ -129,13 +135,15 @@
 
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-      $mainMod = AlT
+      $mainMod = SUPER
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, Return, exec, alacritty
+      bind = $mainMod, B, exec, google-chrome-stable
+      bind = $mainMod, F, exec, pcmanfm
+      bind = $mainMod, N, exec, swaync-client -t -sw
       bind = $mainMod SHIFT, Q, killactive,
       bind = $mainMod, M, exit,
-      bind = $mainMod, E, exec, dolphin
       bind = $mainMod, V, togglefloating,
       bind = $mainMod SHIFT, Return, exec, rofi -show drun -show-icons
       bind = $mainMod, P, pseudo, # dwindle
@@ -186,7 +194,6 @@
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
-
     '';
   };
 }

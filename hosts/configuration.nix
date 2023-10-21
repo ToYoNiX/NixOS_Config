@@ -11,15 +11,30 @@
   ];
 
   boot = {
-    # Bootloader
+    # Boot Options
     loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+
+      grub = {
+        # Grub Dual Boot
+        enable = true;
+        devices = ["nodev"];
+        efiSupport = true;
+
+        # Find All Boot Options
+        useOSProber = true;
+        configurationLimit = 2;
+
+        theme = pkgs.nixos-grub2-theme;
+      };
+      timeout = 3;
     };
 
-    # Kernel
+    kernelParams = ["quiet"];
     kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
 
   systemd = {
@@ -54,19 +69,6 @@
   };
 
   nixpkgs = {
-    overlays = [
-      # Waybar overlay
-      (final: prev: {
-        waybar = prev.waybar.overrideAttrs (oldAttrs: {
-          mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-          postPatch =
-            (oldAttrs.postPatch or "")
-            + ''
-              sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp'';
-        });
-      })
-    ];
-
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -130,7 +132,17 @@
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
-      displayManager.startx.enable = true;
+    };
+
+    greetd = {
+      enable = true;
+      settings = rec {
+        init_session = {
+          command = "Hyprland";
+          user = "assem";
+        };
+        default_session = init_session;
+      };
     };
 
     # USB Automounting
@@ -159,7 +171,23 @@
   };
 
   # Virtualisation
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+      # For Nixos version > 22.11
+      #defaultNetwork.settings = {
+      #  dns_enabled = true;
+      #};
+    };
+  };
   programs.dconf.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -183,9 +211,16 @@
     sysstat
     pciutils
     starship
+    lxsession
     killall
     neofetch
+    distrobox
+    appflowy
+    evince
+    openboard
     obs-studio
+    libnotify
+    glib
     gptfdisk
     mpv
     mpd
@@ -219,12 +254,16 @@
         ms-python.vscode-pylance
         jnoortheen.nix-ide
         kamadorueda.alejandra
+        arcticicestudio.nord-visual-studio-code
       ];
     })
     neovim # Text editors
     python311Packages.venvShellHook
     python311Packages.pip
   ];
+
+  # Gtklock workaround
+  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
 
   xdg.portal = {
     enable = true;

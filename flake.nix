@@ -1,11 +1,6 @@
 {
   description = "My nixos flake";
 
-  nixConfig = {
-    extra-substituters = ["https://cache.m7.rs"];
-    extra-trusted-public-keys = ["cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg="];
-  };
-
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
