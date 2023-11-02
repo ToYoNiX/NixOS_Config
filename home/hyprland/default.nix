@@ -12,7 +12,7 @@
   home.packages = with pkgs; [
     swaynotificationcenter
     rofi-wayland
-    alacritty
+    wl-clipboard
     gtklock
     swaybg
   ];
@@ -26,7 +26,7 @@
     extraConfig = ''
       exec-once = swaync
       exec-once = gtklock
-      exec-once = swaybg -i ~/Downloads/wallpaperflare.com_wallpaper.jpg
+      exec-once = swaybg -i ~/Downloads/"wallpaperflare.com_wallpaper (1).jpg" -m fill
       exec-once = waybar
       exec-once = lxsession
 
@@ -138,16 +138,15 @@
       $mainMod = SUPER
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = $mainMod, Return, exec, alacritty
+      bind = $mainMod, Return, exec, kitty
       bind = $mainMod, B, exec, google-chrome-stable
-      bind = $mainMod, F, exec, pcmanfm
+      bind = $mainMod, F, exec, kitty -e ranger
       bind = $mainMod, N, exec, swaync-client -t -sw
       bind = $mainMod SHIFT, Q, killactive,
       bind = $mainMod, M, exit,
       bind = $mainMod, V, togglefloating,
       bind = $mainMod SHIFT, Return, exec, rofi -show drun -show-icons
-      bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod, J, togglesplit, # dwindle
+      bind = $mainMod, D, togglesplit, # dwindle
       bind = $mainMod SHIFT, F, fullscreen
 
       binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
@@ -158,10 +157,10 @@
       bind =, XF86MonBrightnessUp, exec, light -A 10
 
       # Move focus with mainMod + arrow keys
-      bind = $mainMod, left, movefocus, l
-      bind = $mainMod, right, movefocus, r
-      bind = $mainMod, up, movefocus, u
-      bind = $mainMod, down, movefocus, d
+      bind = $mainMod, h, movefocus, l
+      bind = $mainMod, l, movefocus, r
+      bind = $mainMod, k, movefocus, u
+      bind = $mainMod, j, movefocus, d
 
       # Switch workspaces with mainMod + [0-9]
       bind = $mainMod, 1, workspace, 1

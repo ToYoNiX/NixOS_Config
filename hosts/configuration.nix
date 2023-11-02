@@ -166,7 +166,9 @@
       # Hint electron apps to use wayland
       #NIXOS_OZONE_WL = "1";
 
-      TERMINAL = "alacritty";
+      TERMINAL = "kitty";
+      VISUAL = "vim";
+      EDITOR = "vim";
     };
   };
 
@@ -204,7 +206,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Sys utils
-    vim
+    tree
     wget
     htop
     btop
@@ -214,20 +216,26 @@
     lxsession
     killall
     neofetch
+    pfetch
     distrobox
     appflowy
     evince
     openboard
     obs-studio
+    qalculate-gtk
     libnotify
     glib
     gptfdisk
     mpv
     mpd
     yt-dlp
+    ffmpeg-full
+    losslesscut-bin
     cava
     ncpamixer
     networkmanagerapplet
+    uget
+    eza
 
     # Virtialization utils
     qemu
@@ -238,9 +246,11 @@
 
     # Std utils (web browser, file manager, ...)
     pcmanfm
-    ranger # Lightweight file managers
+    xarchiver
+    unrar
     google-chrome # Browser
     webcord
+    libreoffice-fresh
 
     # Dev utils
     gcc

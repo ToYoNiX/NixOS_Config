@@ -16,6 +16,10 @@
     # ./nvim.nix
     ./hyprland
     ./theming.nix
+    ./nvim.nix
+    ./kitty.nix
+    ./shell.nix
+    ./ranger
   ];
 
   nixpkgs = {

@@ -47,19 +47,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Emacs Overlays
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      flake = false;
-    };
-
-    # Nix-Community Doom Emacs
-    doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.emacs-overlay.follows = "emacs-overlay";
-    };
-
     # Nixify your themes and make everything match nicely using nix-colors!
     nix-colors.url = "github:misterio77/nix-colors";
   };
@@ -76,7 +63,7 @@
     vars = {
       user = "assem";
       location = "$HOME/.setup";
-      terminal = "alacritty";
+      terminal = "kitty";
     };
 
     lib = nixpkgs.lib // home-manager.lib;
