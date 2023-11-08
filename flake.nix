@@ -49,6 +49,9 @@
 
     # Nixify your themes and make everything match nicely using nix-colors!
     nix-colors.url = "github:misterio77/nix-colors";
+
+    # Enable Stylix
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -63,7 +66,7 @@
     vars = {
       user = "assem";
       location = "$HOME/.setup";
-      terminal = "kitty";
+      terminal = "wezterm";
     };
 
     lib = nixpkgs.lib // home-manager.lib;

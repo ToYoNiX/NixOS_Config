@@ -22,11 +22,11 @@
     enable = true;
 
     theme = {
-      package = pkgs.nordic;
-      name = "Nordic";
+      # package = pkgs.nordic;
+      # name = "Nordic";
 
-      # package = pkgs.dracula-theme;
-      # name = "Dracula";
+      package = pkgs.dracula-theme;
+      name = "Dracula";
 
       #name = "FlatColor";
     };

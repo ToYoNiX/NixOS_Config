@@ -13,6 +13,7 @@
     swaynotificationcenter
     rofi-wayland
     wl-clipboard
+    grim
     gtklock
     swaybg
   ];
@@ -26,7 +27,7 @@
     extraConfig = ''
       exec-once = swaync
       exec-once = gtklock
-      exec-once = swaybg -i ~/Downloads/"wallpaperflare.com_wallpaper (1).jpg" -m fill
+      exec-once = swaybg -i ~/Wallpapers/nord-background/10.png -m fill
       exec-once = waybar
       exec-once = lxsession
 
@@ -138,9 +139,10 @@
       $mainMod = SUPER
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = $mainMod, Return, exec, kitty
+      bind = $mainMod, Return, exec, wezterm
       bind = $mainMod, B, exec, google-chrome-stable
-      bind = $mainMod, F, exec, kitty -e ranger
+      bind = $mainMod, F, exec, wezterm -e ranger
+      bind = $mainMod, S, exec, grim
       bind = $mainMod, N, exec, swaync-client -t -sw
       bind = $mainMod SHIFT, Q, killactive,
       bind = $mainMod, M, exit,

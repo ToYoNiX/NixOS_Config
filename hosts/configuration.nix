@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  vars,
   lib,
   config,
   pkgs,
@@ -166,7 +167,7 @@
       # Hint electron apps to use wayland
       #NIXOS_OZONE_WL = "1";
 
-      TERMINAL = "kitty";
+      TERMINAL = vars.terminal;
       VISUAL = "vim";
       EDITOR = "vim";
     };
@@ -265,6 +266,7 @@
         jnoortheen.nix-ide
         kamadorueda.alejandra
         arcticicestudio.nord-visual-studio-code
+        dracula-theme.theme-dracula
       ];
     })
     neovim # Text editors

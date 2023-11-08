@@ -17,8 +17,8 @@
     ./hyprland
     ./theming.nix
     ./nvim.nix
-    ./kitty.nix
     ./shell.nix
+    ./wezterm
     ./ranger
   ];
 

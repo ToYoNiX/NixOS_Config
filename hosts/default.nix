@@ -10,6 +10,7 @@
     modules = [
       ./desktop
       ./configuration.nix
+      inputs.stylix.nixosModules.stylix
     ];
     specialArgs = {inherit inputs outputs vars;};
   };

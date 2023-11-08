@@ -1,11 +1,14 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    chafa
+  ];
   programs = {
     zsh = {
       enable = true;
       enableCompletion = false; # enabled in oh-my-zsh
-      initExtra = ''
+      initExtra = "
         test -f ~/.dir_colors && eval $(dircolors ~/.dir_colors)
-      '';
+      ";
       shellAliases = {
         ne = "nix-env";
         ni = "nix-env -iA";
