@@ -15,10 +15,9 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
     ./hyprland
-    ./theming.nix
     ./nvim.nix
     ./shell.nix
-    ./wezterm
+    ./alacritty
     ./ranger
   ];
 
@@ -41,6 +40,14 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "ePapirus-Dark";
     };
   };
 

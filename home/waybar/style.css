@@ -1,21 +1,3 @@
-@keyframes blink-warning {
-    70% {
-        color: @wm_icon_bg;
-    } to {
-        color: @wm_icon_bg;
-        background-color: @warning_color;
-    }
-  }
-
-  @keyframes blink-critical {
-    70% {
-        color: @wm_icon_bg;
-    } to {
-        color: @wm_icon_bg;
-        background-color: @error_color;
-    }
-  }
-
   /* Reset all styles */
   * {
     border: none;
@@ -24,11 +6,6 @@
     font-weight: bold;
     font-size: 11px;
     min-height: 10px;
-  }
-
-  /* The whole bar */
-  #waybar {
-    background: @theme_bg_color;
   }
 
   #window {
@@ -48,22 +25,6 @@
         /* To compensate for the top border and still have vertical centering */
         padding: 0 0.5em;
         margin: 4px 3px;
-        color: @wm_icon_bg;
-    }
-
-    #workspaces button.active {
-        border-color: @theme_selected_bg_color;
-        color: @wm_icon_bg;
-        background-color: @theme_selected_bg_color;
-    }
-
-    #workspaces button.urgent {
-        border-color: @error_color;
-        color: @error_color;
-    }
-
-    #mode {
-        background: @background_color;
     }
 
     #clock,
@@ -91,70 +52,10 @@
         margin: 4px 3px;
     }
 
-    #clock {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #temperature {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-weather {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-wlsunset {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-playerctl {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-power {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-scratchpad {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-clipboard {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-menu {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-dnd {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
     #battery {
         animation-timing-function: linear;
         animation-iteration-count: infinite;
         animation-direction: alternate;
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #battery.warning {
-        color: @warning_color;
-    }
-
-    #battery.critical {
-        color: @error_color;
     }
 
     #battery.warning.discharging {
@@ -171,71 +72,8 @@
         background-color: #000000;
     }
 
-    #cpu {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #language {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #memory {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #custom-gpu-usage {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #network {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #bluetooth {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #bluetooth.disabled {
-        background: @theme_bg_color;
-        color: @wm_icon_bg;
-    }
-
-    #network.disconnected {
-        background: @theme_bg_color;
-        color: @wm_icon_bg
-    }
-
-    #pulseaudio {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }
-
-    #pulseaudio.muted {
-        background: @theme_bg_color;
-        color: @wm_icon_bg;
-    }
-
-    #custom-wf-recorder {
-        color: @error_color;
-        padding-right: 10px;
-    }
-
     #tray {
         padding-left: 10px;
         padding-right: 10px;
     }
 
-    #idle_inhibitor {
-        background: @theme_selected_bg_color;
-    }
-
-    #idle_inhibitor.activated {
-        background: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
-    }

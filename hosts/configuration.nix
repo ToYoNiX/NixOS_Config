@@ -9,7 +9,15 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.stylix.nixosModules.stylix
   ];
+
+  stylix.image = pkgs.fetchurl {
+    url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
+    sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
+  };
+  stylix.polarity = "dark";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
 
   boot = {
     # Boot Options
@@ -29,7 +37,7 @@
         useOSProber = true;
         configurationLimit = 2;
 
-        theme = pkgs.nixos-grub2-theme;
+        # theme = pkgs.nixos-grub2-theme;
       };
       timeout = 3;
     };
@@ -251,7 +259,6 @@
     unrar
     google-chrome # Browser
     webcord
-    libreoffice-fresh
 
     # Dev utils
     gcc
@@ -265,8 +272,6 @@
         ms-python.vscode-pylance
         jnoortheen.nix-ide
         kamadorueda.alejandra
-        arcticicestudio.nord-visual-studio-code
-        dracula-theme.theme-dracula
       ];
     })
     neovim # Text editors

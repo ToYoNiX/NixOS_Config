@@ -5,10 +5,12 @@
   pkgs,
   ...
 }: {
-  home.file.".config/waybar/style.css".source = ./style.css;
+  stylix.targets.waybar.enableCenterBackColors = false;
+  stylix.targets.waybar.enableLeftBackColors = false;
+  stylix.targets.waybar.enableRightBackColors = false;
   programs.waybar = {
     enable = true;
-    #style = ./style.css;
+    systemd.enable = true;
     settings = [./config.nix];
   };
 }

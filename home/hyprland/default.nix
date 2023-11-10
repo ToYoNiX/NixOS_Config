@@ -15,20 +15,22 @@
     wl-clipboard
     grim
     gtklock
-    swaybg
+    swww
   ];
+
+  # stylix.targets.hyprland.enable = false;
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     enableNvidiaPatches = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     extraConfig = ''
+      exec-once = swww init
+      exec-once = swww img ~/.setup/resources/gif/lofi-cafe.gif
       exec-once = swaync
       exec-once = gtklock
-      exec-once = swaybg -i ~/Wallpapers/nord-background/10.png -m fill
-      exec-once = waybar
       exec-once = lxsession
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -61,8 +63,6 @@
           gaps_in = 5
           gaps_out = 10
           border_size = 2
-          col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-          col.inactive_border = rgba(595959aa)
 
           layout = dwindle
       }
@@ -139,9 +139,9 @@
       $mainMod = SUPER
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = $mainMod, Return, exec, wezterm
+      bind = $mainMod, Return, exec, alacritty
       bind = $mainMod, B, exec, google-chrome-stable
-      bind = $mainMod, F, exec, wezterm -e ranger
+      bind = $mainMod, F, exec, alacritty -e ranger
       bind = $mainMod, S, exec, grim
       bind = $mainMod, N, exec, swaync-client -t -sw
       bind = $mainMod SHIFT, Q, killactive,

@@ -47,9 +47,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nixify your themes and make everything match nicely using nix-colors!
-    nix-colors.url = "github:misterio77/nix-colors";
-
     # Enable Stylix
     stylix.url = "github:danth/stylix";
   };
@@ -66,7 +63,7 @@
     vars = {
       user = "assem";
       location = "$HOME/.setup";
-      terminal = "wezterm";
+      terminal = "alacritty";
     };
 
     lib = nixpkgs.lib // home-manager.lib;
