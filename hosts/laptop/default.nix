@@ -13,6 +13,11 @@
   # Enable brightness control
   programs.light.enable = true;
 
+  boot.initrd.kernelModules = ["amdgpu"];
+  services.xserver.videoDrivers = ["amdgpu"];
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+
   # Enables support for Bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;

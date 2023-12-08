@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  stylix,
   vars,
   lib,
   ...
@@ -10,7 +11,7 @@
     modules = [
       ./desktop
       ./configuration.nix
-      inputs.stylix.nixosModules.stylix
+      stylix
     ];
     specialArgs = {inherit inputs outputs vars;};
   };
@@ -20,6 +21,7 @@
     modules = [
       ./laptop
       ./configuration.nix
+      stylix
     ];
     specialArgs = {inherit inputs outputs vars;};
   };

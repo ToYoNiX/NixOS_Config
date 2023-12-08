@@ -13,12 +13,10 @@
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-    ./hyprland
+    ./hyprland.nix
     ./nvim.nix
     ./shell.nix
-    ./alacritty
-    ./ranger
+    ./theme.nix
   ];
 
   nixpkgs = {
@@ -40,14 +38,6 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
-    };
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "ePapirus-Dark";
     };
   };
 

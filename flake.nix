@@ -6,48 +6,23 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
-    home-manager = {
-      url = "github:nix-community/home-manager/";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager/";
 
     # The Uncompromising Nix Code Formatter
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
-    # NUR Community Packages
-    nur = {
-      # Requires "nur.nixosModules.nur" to be added to the host modules
-      url = "github:nix-community/NUR";
-    };
-
-    # Fixes OpenGL With Other Distros
-    nixgl = {
-      url = "github:guibou/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # NUR Community Packages -> Requires "nur.nixosModules.nur" to be added to the host modules
+    nur.url = "github:nix-community/NUR";
 
     # Nix Helper
-    nh = {
-      url = "github:viperml/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nh.url = "github:viperml/nh";
 
     # Official Hyprland Flake
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "github:hyprwm/hyprland";
 
     # Community scripts and utilities for Hypr projects
-    hyprwm-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprwm-contrib.url = "github:hyprwm/contrib";
 
-    # Enable Stylix
     stylix.url = "github:danth/stylix";
   };
 
@@ -59,11 +34,13 @@
   } @ inputs: let
     inherit (self) outputs;
 
+    stylix = inputs.stylix.nixosModules.stylix;
+
     # Variables Used In Flake
     vars = {
       user = "assem";
       location = "$HOME/.setup";
-      terminal = "alacritty";
+      terminal = "foot";
     };
 
     lib = nixpkgs.lib // home-manager.lib;
@@ -72,7 +49,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = ( # NixOS Configurations
       import ./hosts {
-        inherit inputs outputs vars lib;
+        inherit inputs outputs stylix vars lib;
       }
     );
 

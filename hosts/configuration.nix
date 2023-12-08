@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  stylix,
   vars,
   lib,
   config,
@@ -9,15 +10,13 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.stylix.nixosModules.stylix
   ];
 
-  stylix.image = pkgs.fetchurl {
-    url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
-    sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
-  };
+  stylix.image = ./../resources/wallpapers/48.png;
   stylix.polarity = "dark";
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+
+  stylix.cursor.size = 16;
 
   boot = {
     # Boot Options
@@ -45,8 +44,23 @@
     kernelParams = ["quiet"];
     kernelPackages = pkgs.linuxPackages_latest;
   };
+  stylix.targets.grub.useImage = true;
 
   systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+
     extraConfig = ''
       DefaultTimeoutStopSec=10s
     '';
@@ -202,7 +216,7 @@
   programs.dconf.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.assem = {
+  users.users.${vars.user} = {
     isNormalUser = true;
     description = "Assem Mohamed";
     extraGroups = ["networkmanager" "wheel" "video" "kvm" "input" "disk" "libvirtd"];
@@ -217,20 +231,17 @@
     # Sys utils
     tree
     wget
+    uget
+    qbittorrent
     htop
     btop
     sysstat
     pciutils
     starship
-    lxsession
     killall
     neofetch
     pfetch
     distrobox
-    appflowy
-    evince
-    openboard
-    obs-studio
     qalculate-gtk
     libnotify
     glib
@@ -245,13 +256,17 @@
     networkmanagerapplet
     uget
     eza
+    libreoffice-still
+    litemdview
+    obs-studio
+    rnote
+    xournalpp
 
     # Virtialization utils
     qemu
     OVMF
     virt-manager # Frontend for qemu
     looking-glass-client
-    obs-studio-plugins.looking-glass-obs
 
     # Std utils (web browser, file manager, ...)
     pcmanfm
@@ -260,10 +275,17 @@
     google-chrome # Browser
     webcord
 
+    # Gaming
+    bottles
+    lutris
+    mesa
+    wineWowPackages.waylandFull
+
     # Dev utils
     gcc
     gdb # C, C++ compiler and debugger
-    pypy3
+    # pypy3
+    mono5
     python311 # Python compilers
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
@@ -279,12 +301,13 @@
     python311Packages.pip
   ];
 
-  # Gtklock workaround
-  security.pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
+  # Swaylock workaround
+  security.pam.services.swaylock.text = lib.readFile "${pkgs.swaylock-effects}/etc/pam.d/swaylock";
 
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    config.common.default = "*";
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
