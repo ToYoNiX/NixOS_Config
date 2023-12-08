@@ -1,6 +1,7 @@
 # To Do
--> Move every single thing to home-manager.
--> Integrate stylix.
--> Config vim.
--> Config ranger.
--> Config my shell.
+* -> Move every thing (except the os) to home manager.
+* -> Config variables in the flake.
+* -> Integrate stylix. DONE!!
+* -> Config vim.
+* -> Config lf.
+* -> Config my shell.
