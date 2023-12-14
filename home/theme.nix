@@ -32,8 +32,8 @@
     # };
 
     iconTheme = {
-      # package = pkgs.papirus-icon-theme;
-      # name = "ePapirus-Dark";
+      package = pkgs.papirus-icon-theme;
+      name = "ePapirus-Dark";
 
       # package = pkgs.dracula-icon-theme;
       # name = "Dracula";
@@ -41,8 +41,8 @@
       # package = pkgs.arc-icon-theme;
       # name = "Arc";
 
-      package = pkgs.nordzy-icon-theme;
-      name = "Nordzy-cyan";
+      # package = pkgs.nordzy-icon-theme;
+      # name = "Nordzy-cyan";
 
       #name = "flattrcolor";
     };

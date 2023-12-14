@@ -97,6 +97,7 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
+    overlays = [];
   };
 
   # Swap
@@ -155,18 +156,19 @@
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
-    };
 
-    greetd = {
-      enable = true;
-      settings = rec {
-        init_session = {
-          command = "Hyprland";
-          user = "assem";
-        };
-        default_session = init_session;
+      displayManager = {
+        defaultSession = "myWM";
+        session = [
+          {
+            manage = "desktop";
+            name = "myWM";
+            start = ''exec $HOME/.WM'';
+          }
+        ];
       };
     };
+    picom.enable = true;
 
     # USB Automounting
     gvfs.enable = true;
@@ -183,12 +185,6 @@
     };
 
     sessionVariables = {
-      # If cursor becomes invisible
-      WLR_NO_HARDWARE_CURSORS = "1";
-
-      # Hint electron apps to use wayland
-      #NIXOS_OZONE_WL = "1";
-
       TERMINAL = vars.terminal;
       VISUAL = "vim";
       EDITOR = "vim";
@@ -242,6 +238,7 @@
     neofetch
     pfetch
     distrobox
+    pulseaudio
     qalculate-gtk
     libnotify
     glib
@@ -261,6 +258,17 @@
     obs-studio
     rnote
     xournalpp
+    xclip
+    xorg.libX11
+    xorg.libxcb
+    xorg.libXft
+    xorg.libXinerama
+    xorg.xinit
+    xorg.xinput
+    xorg.libXinerama
+    nix-prefetch-git
+    nix-prefetch-github
+    udiskie
 
     # Virtialization utils
     qemu
@@ -273,15 +281,17 @@
     xarchiver
     unrar
     google-chrome # Browser
-    webcord
+    discord
 
     # Gaming
     bottles
     lutris
     mesa
-    wineWowPackages.waylandFull
+    wineWowPackages.full
 
     # Dev utils
+    gnumake
+    cmake
     gcc
     gdb # C, C++ compiler and debugger
     # pypy3
@@ -306,7 +316,6 @@
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
     config.common.default = "*";
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };

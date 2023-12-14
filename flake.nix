@@ -8,22 +8,20 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/";
 
-    # The Uncompromising Nix Code Formatter
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-
-    # NUR Community Packages -> Requires "nur.nixosModules.nur" to be added to the host modules
-    nur.url = "github:nix-community/NUR";
-
-    # Nix Helper
-    nh.url = "github:viperml/nh";
-
-    # Official Hyprland Flake
-    hyprland.url = "github:hyprwm/hyprland";
-
-    # Community scripts and utilities for Hypr projects
-    hyprwm-contrib.url = "github:hyprwm/contrib";
-
+    # Styling the system
     stylix.url = "github:danth/stylix";
+
+    dwm.url = "github:ToYoNiX/dwm";
+    dwm.flake = false;
+
+    st.url = "github:ToYoNiX/st";
+    st.flake = false;
+
+    dmenu.url = "github:ToYoNiX/dmenu";
+    dmenu.flake = false;
+
+    dwmBlocks.url = "github:ToYoNiX/dwmBlocks";
+    dwmBlocks.flake = false;
   };
 
   outputs = {
@@ -40,7 +38,7 @@
     vars = {
       user = "assem";
       location = "$HOME/.setup";
-      terminal = "foot";
+      terminal = "st";
     };
 
     lib = nixpkgs.lib // home-manager.lib;

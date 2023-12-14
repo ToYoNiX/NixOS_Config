@@ -13,9 +13,8 @@
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-    ./hyprland.nix
+    ./dwm.nix
     ./nvim.nix
-    ./shell.nix
     ./theme.nix
   ];
 
@@ -24,7 +23,6 @@
     overlays = [
       # If you want to use overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
-
       # Or define it inline, for example:
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
@@ -39,6 +37,15 @@
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
+  };
+
+  programs.lf.enable = true;
+
+  programs.foot.enable = true;
+  programs.zathura.enable = true;
+  services.dwm-status = {
+    enable = true;
+    order = ["audio" "battery" "time"];
   };
 
   # Set your username
