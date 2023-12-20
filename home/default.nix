@@ -40,13 +40,7 @@
   };
 
   programs.lf.enable = true;
-
-  programs.foot.enable = true;
   programs.zathura.enable = true;
-  services.dwm-status = {
-    enable = true;
-    order = ["audio" "battery" "time"];
-  };
 
   # Set your username
   home = {

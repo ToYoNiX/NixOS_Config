@@ -22,6 +22,9 @@
 
     dwmBlocks.url = "github:ToYoNiX/dwmBlocks";
     dwmBlocks.flake = false;
+
+    scripts.url = "github:ToYoNiX/scripts";
+    scripts.flake = false;
   };
 
   outputs = {

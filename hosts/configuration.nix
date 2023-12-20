@@ -16,6 +16,8 @@
   stylix.polarity = "dark";
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
+  stylix.cursor.package = pkgs.vanilla-dmz;
+  stylix.cursor.name = "Vanilla-DMZ";
   stylix.cursor.size = 16;
 
   boot = {
@@ -228,7 +230,8 @@
     tree
     wget
     uget
-    qbittorrent
+    gparted
+    deluge
     htop
     btop
     sysstat
@@ -262,13 +265,13 @@
     xorg.libX11
     xorg.libxcb
     xorg.libXft
-    xorg.libXinerama
     xorg.xinit
     xorg.xinput
     xorg.libXinerama
     nix-prefetch-git
     nix-prefetch-github
     udiskie
+    kdiskmark
 
     # Virtialization utils
     qemu
@@ -310,9 +313,6 @@
     python311Packages.venvShellHook
     python311Packages.pip
   ];
-
-  # Swaylock workaround
-  security.pam.services.swaylock.text = lib.readFile "${pkgs.swaylock-effects}/etc/pam.d/swaylock";
 
   xdg.portal = {
     enable = true;

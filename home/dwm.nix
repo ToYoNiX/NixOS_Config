@@ -21,14 +21,18 @@ in {
   home.file."/home/assem/.WM" = {
     executable = true;
     text = ''
-      exec dwm &
+      deluge &
+      uget-gtk &
       nm-applet &
       discord &
       blueman-applet &
       udiskie --appindicator -t &
-      dwmblocks
+      sleep 5 && dwmblocks &
+      exec dwm
     '';
   };
+
+  home.file."/home/assem/scripts".source = inputs.scripts;
 
   home.packages = [
     st
