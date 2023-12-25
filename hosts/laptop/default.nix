@@ -6,9 +6,7 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [];
 
   # Enable brightness control
   programs.light.enable = true;

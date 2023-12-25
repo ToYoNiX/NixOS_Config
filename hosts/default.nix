@@ -10,7 +10,8 @@
   desktop = lib.nixosSystem {
     modules = [
       ./desktop
-      ./configuration.nix
+      ./common-configuration.nix
+      ./common-hardware.nix
       stylix
     ];
     specialArgs = {inherit inputs outputs vars;};
@@ -20,7 +21,8 @@
   laptop = lib.nixosSystem {
     modules = [
       ./laptop
-      ./configuration.nix
+      ./common-configuration.nix
+      ./common-hardware.nix
       stylix
     ];
     specialArgs = {inherit inputs outputs vars;};

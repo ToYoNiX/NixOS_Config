@@ -1,0 +1,1 @@
+nix flake update ~/.setup --commit-lock-file

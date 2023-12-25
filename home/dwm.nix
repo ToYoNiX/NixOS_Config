@@ -32,12 +32,22 @@ in {
     '';
   };
 
-  home.file."/home/assem/scripts".source = inputs.scripts;
+  home.file."/home/assem/scripts".source = ./../scripts;
 
-  home.packages = [
-    st
-    dwm
-    dmenu
-    dwmBlocks
-  ];
+  home.packages = with pkgs;
+    [
+      xclip
+      xorg.libX11
+      xorg.libxcb
+      xorg.libXft
+      xorg.xinit
+      xorg.xinput
+      xorg.libXinerama
+    ]
+    ++ [
+      st
+      dwm
+      dmenu
+      dwmBlocks
+    ];
 }
