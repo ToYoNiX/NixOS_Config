@@ -22,6 +22,9 @@
 
     dwmBlocks.url = "github:ToYoNiX/dwmBlocks";
     dwmBlocks.flake = false;
+
+    wallpaper.url = "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/48.png";
+    wallpaper.flake = false;
   };
 
   outputs = {
