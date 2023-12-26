@@ -265,6 +265,7 @@
     nix-prefetch-github
     udiskie
     kdiskmark
+    libreoffice-fresh
 
     # Virtialization utils
     qemu
