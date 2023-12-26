@@ -215,11 +215,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1703527273,
-        "narHash": "sha256-uNaXfmlsxwbVqxSeVHmAGp/jMl7PvTL2jl7l/VNvVjA=",
+        "lastModified": 1703527373,
+        "narHash": "sha256-AjypRssRtS6F3xkf7rE3/bXkIF2WJOZLbTIspjcE1zM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "015a36e9c737d97356eb1627d4d7c7bd84976b85",
+        "rev": "80679ea5074ab7190c4cce478c600057cfb5edae",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1702312524,
-        "narHash": "sha256-gkZJRDBUCpTPBvQk25G0B7vfbpEYM5s5OZqghkjZsnE=",
+        "lastModified": 1703255338,
+        "narHash": "sha256-Z6wfYJQKmDN9xciTwU3cOiOk+NElxdZwy/FiHctCzjU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a9bf124c46ef298113270b1f84a164865987a91c",
+        "rev": "6df37dc6a77654682fe9f071c62b4242b5342e04",
         "type": "github"
       },
       "original": {
@@ -305,7 +305,8 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "st": "st",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "wallpaper": "wallpaper"
       }
     },
     "st": {
@@ -350,6 +351,18 @@
         "owner": "danth",
         "repo": "stylix",
         "type": "github"
+      }
+    },
+    "wallpaper": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-oj0XbzjHb/rlYxORX0CVyrIHoVCgJ4GRhS9Ikn5uISw=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/48.png"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/48.png"
       }
     }
   },
