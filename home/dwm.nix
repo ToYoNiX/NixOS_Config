@@ -18,20 +18,6 @@
     src = inputs.dwmBlocks;
   });
 in {
-  home.file."/home/assem/.WM" = {
-    executable = true;
-    text = ''
-      deluge &
-      uget-gtk &
-      nm-applet &
-      discord &
-      blueman-applet &
-      udiskie --appindicator -t &
-      sleep 5 && dwmblocks &
-      exec dwm
-    '';
-  };
-
   home.file."/home/assem/scripts".source = ./../scripts;
 
   home.packages = with pkgs;

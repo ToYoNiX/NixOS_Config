@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+deluge &
+uget-gtk &
+nm-applet &
+blueman-applet &
+udiskie --appindicator -t &
+sleep 5 && discord &
+sleep 5 && dwmblocks &
+exec dwm

@@ -165,7 +165,7 @@
           {
             manage = "desktop";
             name = "myWM";
-            start = ''exec $HOME/.WM'';
+            start = ''exec $HOME/.setup/scripts/WM'';
           }
         ];
       };
