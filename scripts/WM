@@ -5,6 +5,6 @@ uget-gtk &
 nm-applet &
 blueman-applet &
 udiskie --appindicator -t &
-sleep 5 && discord &
+discord &
 sleep 5 && dwmblocks &
 exec dwm
