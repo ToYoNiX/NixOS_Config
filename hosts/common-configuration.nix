@@ -279,6 +279,9 @@
     unrar
     google-chrome # Browser
     discord
+    appflowy
+    trilium-desktop
+    zettlr
 
     # Gaming
     bottles
