@@ -282,6 +282,7 @@
     appflowy
     trilium-desktop
     zettlr
+    joplin-desktop
 
     # Gaming
     bottles
