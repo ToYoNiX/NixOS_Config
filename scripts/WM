@@ -6,5 +6,6 @@ nm-applet &
 blueman-applet &
 udiskie --appindicator -t &
 discord &
+trilium &
 sleep 5 && dwmblocks &
 exec dwm
