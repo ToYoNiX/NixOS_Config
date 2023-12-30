@@ -282,6 +282,7 @@
     unrar
     google-chrome # Browser
     discord
+    trilium-desktop
     joplin-desktop
 
     # Gaming
