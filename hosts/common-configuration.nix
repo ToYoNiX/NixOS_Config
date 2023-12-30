@@ -172,6 +172,9 @@
     };
     picom.enable = true;
 
+    # Enable onedrive
+    onedrive.enable = true;
+
     # USB Automounting
     gvfs.enable = true;
     devmon.enable = true;
@@ -279,14 +282,13 @@
     unrar
     google-chrome # Browser
     discord
-    appflowy
-    trilium-desktop
-    zettlr
     joplin-desktop
 
     # Gaming
     bottles
     lutris
+    steam
+    heroic
     mesa
     wineWowPackages.full
 
