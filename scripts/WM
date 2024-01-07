@@ -4,7 +4,6 @@ deluge &
 uget-gtk &
 nm-applet &
 blueman-applet &
-udiskie --appindicator -t &
 discord &
 joplin-desktop &
 sleep 5 && dwmblocks &

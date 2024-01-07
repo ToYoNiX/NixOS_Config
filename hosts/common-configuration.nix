@@ -266,7 +266,6 @@
     xournalpp
     nix-prefetch-git
     nix-prefetch-github
-    udiskie
     kdiskmark
     libreoffice-fresh
 
