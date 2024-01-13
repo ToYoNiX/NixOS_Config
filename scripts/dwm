@@ -1,10 +1,9 @@
 #!/bin/sh
 #
-deluge &
 uget-gtk &
 nm-applet &
 blueman-applet &
-discord &
-joplin-desktop &
+webcord &
+nitrogen --restore &
 sleep 5 && dwmblocks &
 exec dwm
