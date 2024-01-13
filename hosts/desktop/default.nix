@@ -40,7 +40,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       # Import your home-manager configuration
       assem = import ../../home-manager/home.nix;
@@ -107,11 +107,13 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.session = [{
-    manage = "desktop";
-    name = "Dwm";
-    start = ''exec $HOME/.setup/scripts/dwm'';
-  }];
+  services.xserver.displayManager.session = [
+    {
+      manage = "desktop";
+      name = "Dwm";
+      start = ''exec $HOME/.setup/scripts/dwm'';
+    }
+  ];
   programs.hyprland.enable = true;
   programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 

@@ -5,8 +5,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   services.gnome-keyring.enable = true;
 
   gtk = {
@@ -22,22 +21,21 @@
   };
 
   # For DWM
-  home.packages = with pkgs;
-    [
-      xclip
-      xorg.libX11
-      xorg.libxcb
-      xorg.libXft
-      xorg.xinit
-      xorg.xinput
-      xorg.libXinerama
-      (dwm.overrideAttrs {
-        src = (inputs.suckless + "/dwm");
-      })
-      (dwmblocks.overrideAttrs {
-        src = (inputs.suckless + "/dwmBlocks");
-      })
-    ];
+  home.packages = with pkgs; [
+    xclip
+    xorg.libX11
+    xorg.libxcb
+    xorg.libXft
+    xorg.xinit
+    xorg.xinput
+    xorg.libXinerama
+    (dwm.overrideAttrs {
+      src = inputs.suckless + "/dwm";
+    })
+    (dwmblocks.overrideAttrs {
+      src = inputs.suckless + "/dwmBlocks";
+    })
+  ];
 
   # For HYPRLAND
   wayland.windowManager.hyprland = {
@@ -119,7 +117,6 @@
         # mouse keybindings
         "$MOD,mouse_down,workspace,e+1"
         "$MOD,mouse_up,workspace,e-1"
-
 
         "$MODSHIFT,U,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
         "$MODSHIFT,D,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
@@ -414,6 +411,18 @@
       display-drun = "";
       display-window = "﩯";
     };
+  };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      ms-vscode.cpptools
+      ms-python.python
+      ms-python.vscode-pylance
+      jnoortheen.nix-ide
+      kamadorueda.alejandra
+    ];
   };
 
   programs.kitty.enable = true;
