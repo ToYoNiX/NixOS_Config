@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 uget-gtk &
-nm-applet &
+lxsession &
 blueman-applet &
 webcord &
 nitrogen --restore &

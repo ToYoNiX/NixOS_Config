@@ -28,6 +28,7 @@
     kdiskmark
     pulseaudio
     nitrogen
+    lxsession
 
     # Virtialization utils
     qemu
@@ -38,11 +39,7 @@
     pcmanfm
     xarchiver
     unrar
-    (google-chrome.override {
-      commandLineArgs = [
-        "--ozone-platform-hint=auto"
-      ];
-    })
+    google-chrome
     webcord
     obsidian
 

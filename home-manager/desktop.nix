@@ -46,8 +46,8 @@
       exec-once = [
         "uget-gtk"
         "waybar"
-        "nm-applet"
-        "webcord --ozone-platform-hint=auto"
+        "lxsession"
+        "webcord"
       ];
       "$MOD" = "ALT";
       general = {
@@ -86,6 +86,7 @@
         "$MODSHIFT,Q,killactive,"
         "$MOD,M,exit,"
         "$MOD,P,exec,rofi -show drun"
+        "$MOD,B,exec,google-chrome-stable"
         "$MOD,F,exec,pcmanfm"
         "$MODSHIFT,F,fullscreen,"
         "$MOD,V,togglefloating,"

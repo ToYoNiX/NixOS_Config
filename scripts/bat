@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#
 # Function to get the battery percentage and status
 get_battery_info() {
     battery_path="/sys/class/power_supply/BAT0"

@@ -177,7 +177,13 @@
   users.users.assem = {
     isNormalUser = true;
     description = "Assem Mohamed";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "i2c"
+      "video"
+      "audio"
+    ];
     # packages = with pkgs; [];
   };
 

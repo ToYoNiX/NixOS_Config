@@ -65,7 +65,6 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/desktop
-
           inputs.stylix.nixosModules.stylix
         ];
       };

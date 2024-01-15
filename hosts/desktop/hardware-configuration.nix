@@ -43,6 +43,9 @@
   # networking.interfaces.enp2s0f0u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp9s0.useDHCP = lib.mkDefault true;
 
+  # Enable OpenTabletDriver
+  hardware.opentabletdriver.enable = true;
+
   # NVIDIA Drivers
   # Enable OpenGL
   hardware.opengl = {
