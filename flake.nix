@@ -78,6 +78,7 @@
           # > Our main nixos configuration file <
           ./hosts/common
           ./hosts/desktop
+          ./stylix
           inputs.stylix.nixosModules.stylix
         ];
       };
@@ -88,6 +89,7 @@
           # > Our main nixos configuration file <
           ./hosts/common
           ./hosts/laptop
+          ./stylix
           inputs.stylix.nixosModules.stylix
         ];
       };
@@ -102,6 +104,8 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
+          ./stylix
+          inputs.stylix.homeManagerModules.stylix
         ];
       };
     };
