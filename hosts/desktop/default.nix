@@ -183,6 +183,8 @@
       "i2c"
       "video"
       "audio"
+      "input"
+      "disk"
     ];
     # packages = with pkgs; [];
   };

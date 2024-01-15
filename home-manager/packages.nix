@@ -25,7 +25,6 @@
     xournalpp
     nix-prefetch-git
     nix-prefetch-github
-    kdiskmark
     pulseaudio
     nitrogen
     lxsession

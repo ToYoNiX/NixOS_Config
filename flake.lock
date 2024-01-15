@@ -374,11 +374,11 @@
     "suckless": {
       "flake": false,
       "locked": {
-        "lastModified": 1705121804,
-        "narHash": "sha256-NjlQS8zo9QqXvFv4LKoylEXsnoEsrzJetCZjjhffkQM=",
+        "lastModified": 1705303928,
+        "narHash": "sha256-HFN9IrmxXS3C43qZ2V3SF7jax+pKkMXTvHcee7M5qOg=",
         "owner": "ToYoNiX",
         "repo": "suckless",
-        "rev": "92a43a6ef96482c7d838f9d3078f1f0330ebbd80",
+        "rev": "bce9f0d871e5f5a2d204cb6b7fc4b67fb9dd953f",
         "type": "github"
       },
       "original": {

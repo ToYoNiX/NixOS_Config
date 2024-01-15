@@ -23,6 +23,7 @@
   # For DWM
   home.packages = with pkgs; [
     xclip
+    xorg.xhost
     xorg.libX11
     xorg.libxcb
     xorg.libXft
@@ -33,7 +34,7 @@
       src = inputs.suckless + "/dwm";
     })
     (dwmblocks.overrideAttrs {
-      src = inputs.suckless + "/dwmBlocks";
+      src = inputs.suckless + "/dwmblocks";
     })
   ];
 
