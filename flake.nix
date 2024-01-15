@@ -1,6 +1,15 @@
 {
   description = "Your new nix config";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://hyprland.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+  };
+
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -19,6 +28,9 @@
 
     # Stylix
     stylix.url = "github:danth/stylix";
+
+    # Fixes OpenGL With Other Distros.
+    nixgl.url = "github:guibou/nixGL";
   };
 
   outputs = {
@@ -64,7 +76,18 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
+          ./hosts/common
           ./hosts/desktop
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
+
+      laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/common
+          ./hosts/laptop
           inputs.stylix.nixosModules.stylix
         ];
       };
@@ -73,7 +96,7 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "assem@desktop" = home-manager.lib.homeManagerConfiguration {
+      "assem@debian" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
