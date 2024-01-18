@@ -442,11 +442,11 @@
     "suckless": {
       "flake": false,
       "locked": {
-        "lastModified": 1705303928,
-        "narHash": "sha256-HFN9IrmxXS3C43qZ2V3SF7jax+pKkMXTvHcee7M5qOg=",
+        "lastModified": 1705558523,
+        "narHash": "sha256-Mw0XW4352Lfce2w3YMByLBnlu2NNeyOEgGeXpNe8IrE=",
         "owner": "ToYoNiX",
         "repo": "suckless",
-        "rev": "bce9f0d871e5f5a2d204cb6b7fc4b67fb9dd953f",
+        "rev": "37a781b987eeb69bd64bbf29246abd3e6ae6a8c2",
         "type": "github"
       },
       "original": {

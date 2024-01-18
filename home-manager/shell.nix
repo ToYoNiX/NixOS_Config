@@ -6,7 +6,7 @@
 }: {
   home.file."/home/assem/scripts".source = ./../scripts;
   home.sessionVariables = {
-    TERMINAL = "kitty";
+    TERMINAL = "alacritty";
   };
 
   programs.bat = {

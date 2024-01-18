@@ -83,7 +83,7 @@
         "wlogout"
       ];
       bind = [
-        "$MOD,RETURN,exec,kitty"
+        "$MOD,RETURN,exec,alacritty"
         "$MODSHIFT,Q,killactive,"
         "$MOD,M,exit,"
         "$MOD,P,exec,rofi -show drun"
@@ -396,7 +396,7 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    terminal = "${pkgs.kitty}/bin/kitty";
+    terminal = "${pkgs.alacritty}/bin/alacritty";
     plugins = with pkgs; [
       rofi-top
       rofi-emoji
@@ -427,11 +427,7 @@
     ];
   };
 
-  programs.kitty.enable = true;
-  programs.kitty.extraConfig = "
-    # 0 disables it; -1 enables it
-    confirm_os_window_close 0
-  ";
+  programs.alacritty.enable = true;
 
   services.avizo.enable = true;
   services.mako.enable = true;
