@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-uget-gtk &
-lxsession &
-blueman-applet &
-webcord &
-nitrogen --restore &
-sleep 5 && dwmblocks &
-exec dwm

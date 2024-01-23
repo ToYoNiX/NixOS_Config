@@ -31,6 +31,12 @@
 
     # Fixes OpenGL With Other Distros.
     nixgl.url = "github:guibou/nixGL";
+
+    # Wallpaper
+    wallpaper = {
+      url = "file:///home/assem/Downloads/wallpaperflare.com_wallpaper%20(1).jpg";
+      flake = false;
+    };
   };
 
   outputs = {

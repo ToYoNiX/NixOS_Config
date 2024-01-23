@@ -26,8 +26,10 @@
     nix-prefetch-git
     nix-prefetch-github
     pulseaudio
-    nitrogen
+    feh
+    swaybg
     lxsession
+    krita
 
     # Virtialization utils
     qemu
@@ -41,6 +43,7 @@
     google-chrome
     webcord
     obsidian
+    joplin-desktop
 
     # Gaming
     bottles

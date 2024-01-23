@@ -49,8 +49,9 @@
         "waybar"
         "lxsession"
         "webcord"
+        "swaybg -i ${inputs.wallpaper}"
       ];
-      "$MOD" = "ALT";
+      "$MOD" = "SUPER";
       general = {
         sensitivity = 1.0;
         gaps_in = 5;
