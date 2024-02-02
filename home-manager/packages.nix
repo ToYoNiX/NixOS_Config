@@ -26,7 +26,6 @@
     nix-prefetch-git
     nix-prefetch-github
     pulseaudio
-    feh
     swaybg
     lxsession
     krita
@@ -45,15 +44,6 @@
     google-chrome
     webcord
     obsidian
-    joplin-desktop
-
-    # Gaming
-    bottles
-    lutris
-    steam
-    heroic
-    mesa
-    wineWowPackages.waylandFull
 
     # Dev utils
     gnumake

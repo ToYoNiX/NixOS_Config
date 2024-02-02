@@ -257,11 +257,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1706838674,
-        "narHash": "sha256-umU1VC3bI4L/ZHpl/bZsm4MSUnX9wZrQRmbEjNLeQV4=",
+        "lastModified": 1706888173,
+        "narHash": "sha256-D7bJTQeDqkNYYw6Tc+AJplFw2eutke1SjppsarU+N5I=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "7447be822080fac5b8515a177773ec74b4d6c925",
+        "rev": "cf1886ca44c78de3424d96fd18023eb0db759af6",
         "type": "github"
       },
       "original": {
@@ -400,11 +400,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1706550542,
-        "narHash": "sha256-UcsnCG6wx++23yeER4Hg18CXWbgNpqNXcHIo5/1Y+hc=",
+        "lastModified": 1706732774,
+        "narHash": "sha256-hqJlyJk4MRpcItGYMF+3uHe8HvxNETWvlGtLuVpqLU0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "97b17f32362e475016f942bbdfda4a4a72a8a652",
+        "rev": "b8b232ae7b8b144397fdb12d20f592e5e7c1a64d",
         "type": "github"
       },
       "original": {
@@ -508,11 +508,11 @@
       "locked": {
         "narHash": "sha256-4ijQ17KG7pvLOgCGfQH4+kbZt/MSPDmKOsku1U0G+nI=",
         "type": "file",
-        "url": "file:///home/assem/Downloads/wallpaperflare.com_wallpaper%20%281%29.jpg"
+        "url": "file:///home/assem/.setup/wallpapers/static/3.jpg"
       },
       "original": {
         "type": "file",
-        "url": "file:///home/assem/Downloads/wallpaperflare.com_wallpaper%20%281%29.jpg"
+        "url": "file:///home/assem/.setup/wallpapers/static/3.jpg"
       }
     },
     "wlroots": {

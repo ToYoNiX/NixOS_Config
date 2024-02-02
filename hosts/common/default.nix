@@ -65,6 +65,9 @@
     memoryPercent = 125;
   };
 
+  # Swaylock pam support
+  security.pam.services.swaylock.text = lib.readFile "${pkgs.swaylock-effects}/etc/pam.d/swaylock";
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -94,21 +97,22 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "Dwm";
-      start = ''exec $HOME/dwm'';
-    }
-  ];
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      default_session = {
+        command = "Hyprland";
+        user = "assem";
+      };
+    };
+  };
   programs.hyprland.enable = true;
   programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.

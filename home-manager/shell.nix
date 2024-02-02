@@ -4,9 +4,8 @@
   config,
   ...
 }: {
-  home.file."/home/assem/scripts".source = ./../scripts;
   home.sessionVariables = {
-    TERMINAL = "alacritty";
+    TERMINAL = "foot";
   };
 
   programs.bat = {

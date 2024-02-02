@@ -13,7 +13,6 @@
     ./media.nix
     ./packages.nix
     ./shell.nix
-    ./../scripts
   ];
 
   nixpkgs = {

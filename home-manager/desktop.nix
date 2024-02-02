@@ -20,24 +20,6 @@
     enable = true;
   };
 
-  # For DWM
-  home.packages = with pkgs; [
-    xclip
-    xorg.xhost
-    xorg.libX11
-    xorg.libxcb
-    xorg.libXft
-    xorg.xinit
-    xorg.xinput
-    xorg.libXinerama
-    (dwm.overrideAttrs {
-      src = inputs.suckless + "/dwm";
-    })
-    (dwmblocks.overrideAttrs {
-      src = inputs.suckless + "/dwmblocks";
-    })
-  ];
-
   # For HYPRLAND
   wayland.windowManager.hyprland = {
     enable = true;
@@ -49,7 +31,8 @@
         "waybar"
         "lxsession"
         "webcord"
-        # "swaybg -i ${inputs.wallpaper}"
+        "swaylock"
+        "swaybg -i ${inputs.wallpaper}"
       ];
       input = {
         accel_profile = "flat";
@@ -87,7 +70,7 @@
         "wlogout"
       ];
       bind = [
-        "$MOD,RETURN,exec,alacritty"
+        "$MOD,RETURN,exec,foot"
         "$MODSHIFT,Q,killactive,"
         "$MOD,M,exit,"
         "$MOD,P,exec,rofi -show drun"
@@ -397,10 +380,21 @@
     ];
   };
 
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+    settings = {
+      clock = true;
+      indicator-idle-visible = true;
+      indicator-radius = 100;
+      effect-blur = "7x5";
+    };
+  };
+
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = "${pkgs.foot}/bin/foot";
     plugins = with pkgs; [
       rofi-emoji
       rofi-calc
@@ -427,10 +421,11 @@
     userSettings = {
       "terminal.integrated.enableMultiLinePasteWarning" = false;
       "workbench.startupEditor" = "none";
+      "explorer.confirmDragAndDrop" = false;
     };
   };
 
-  programs.alacritty.enable = true;
+  programs.foot.enable = true;
 
   services.avizo.enable = true;
   services.mako.enable = true;

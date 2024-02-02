@@ -37,7 +37,7 @@
 
     # Wallpaper
     wallpaper = {
-      url = "file:///home/assem/Downloads/wallpaperflare.com_wallpaper%20(1).jpg";
+      url = "file:///home/assem/.setup/wallpapers/static/3.jpg";
       flake = false;
     };
   };
