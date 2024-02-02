@@ -49,8 +49,11 @@
         "waybar"
         "lxsession"
         "webcord"
-        "swaybg -i ${inputs.wallpaper}"
+        # "swaybg -i ${inputs.wallpaper}"
       ];
+      input = {
+        accel_profile = "flat";
+      };
       "$MOD" = "SUPER";
       general = {
         sensitivity = 1.0;
@@ -120,6 +123,12 @@
         # mouse keybindings
         "$MOD,mouse_down,workspace,e+1"
         "$MOD,mouse_up,workspace,e-1"
+      ];
+      binde = [
+        "$MODSHIFT,H,resizeactive, -10 0"
+        "$MODSHIFT,L,resizeactive, 10 0"
+        "$MODSHIFT,K,resizeactive, 0 -10"
+        "$MODSHIFT,J,resizeactive, 0 10"
 
         "$MODSHIFT,U,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
         "$MODSHIFT,D,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
@@ -129,12 +138,6 @@
         ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86MonBrightnessUp,exec,light -A 10"
         ",XF86MonBrightnessDown,exec,light -U 10"
-      ];
-      binde = [
-        "$MODSHIFT,H,resizeactive, -10 0"
-        "$MODSHIFT,L,resizeactive, 10 0"
-        "$MODSHIFT,K,resizeactive, 0 -10"
-        "$MODSHIFT,J,resizeactive, 0 10"
       ];
       monitor = ",highrr,auto,1";
     };
@@ -399,20 +402,15 @@
     package = pkgs.rofi-wayland;
     terminal = "${pkgs.alacritty}/bin/alacritty";
     plugins = with pkgs; [
-      rofi-top
       rofi-emoji
       rofi-calc
-      rofi-pulse-select
       rofi-file-browser
     ];
     extraConfig = {
-      modi = "drun,run";
+      modi = "drun,emoji,file-browser-extended,window";
       sidebar-mode = true;
       show-icons = true;
-      icon-theme = "Nordzy";
-      display-run = "";
-      display-drun = "";
-      display-window = "﩯";
+      display-file-browser-extended = "files";
     };
   };
 
@@ -426,6 +424,10 @@
       jnoortheen.nix-ide
       kamadorueda.alejandra
     ];
+    userSettings = {
+      "terminal.integrated.enableMultiLinePasteWarning" = false;
+      "workbench.startupEditor" = "none";
+    };
   };
 
   programs.alacritty.enable = true;

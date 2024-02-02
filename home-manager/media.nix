@@ -13,29 +13,7 @@
     };
   };
 
-  programs.mpv = {
-    enable = true;
-    config = {
-      no-input-default-bindings = "";
-    };
-    bindings = {
-      SPACE = "cycle pause";
-      f = "cycle fullscreen";
-      "," = "add volume -2";
-      "." = "add volume +2";
-      h = "seek -60";
-      j = "seek -10";
-      k = "seek 10";
-      l = "seek 60";
-    };
-    scripts = with pkgs.mpvScripts; [
-      sponsorblock
-      mpris
-      autoload
-      uosc
-      thumbnail
-    ];
-  };
+  programs.mpv.enable = true;
 
   programs.zathura = {
     enable = true;

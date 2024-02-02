@@ -14,6 +14,9 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    hardware.url = "github:nixos/nixos-hardware";
+    impermanence.url = "github:nix-community/impermanence";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
 

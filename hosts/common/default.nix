@@ -11,6 +11,10 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-pc-ssd
+
     inputs.home-manager.nixosModules.home-manager
   ];
   # Bootloader.
@@ -36,7 +40,9 @@
     };
 
     kernelParams = ["quiet"];
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
 
   home-manager = {
