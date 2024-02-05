@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  vars,
   stylix,
   lib,
   config,
@@ -46,7 +47,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = {inherit inputs outputs vars;};
     users = {
       # Import your home-manager configuration
       assem = import ../../home-manager/home.nix;

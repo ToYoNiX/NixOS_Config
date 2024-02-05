@@ -34,13 +34,6 @@
 
     # Fixes OpenGL With Other Distros.
     nixgl.url = "github:guibou/nixGL";
-
-    # Wallpaper
-    wallpaper = {
-      # url = "file:///home/assem/.setup/wallpapers/static/3.jpg";
-      url = "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/10.png";
-      flake = false;
-    };
   };
 
   outputs = {
@@ -50,6 +43,10 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+
+    vars = {
+      wallpaper = ./wallpapers/static/1.jpg;
+    };
 
     # Supported systems for your flake packages, shell, etc.
     systems = [
@@ -83,7 +80,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs vars;};
         modules = [
           # > Our main nixos configuration file <
           ./hosts/common
@@ -94,7 +91,7 @@
       };
 
       laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs vars;};
         modules = [
           # > Our main nixos configuration file <
           ./hosts/common
@@ -110,7 +107,7 @@
     homeConfigurations = {
       "assem@debian" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs outputs vars;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix

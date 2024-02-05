@@ -1,9 +1,11 @@
 {
   inputs,
+  outputs,
+  vars,
   stylix,
-  pkgs,
   lib,
   config,
+  pkgs,
   ...
 }: {
   services.gnome-keyring.enable = true;
@@ -32,7 +34,7 @@
         "lxsession"
         "webcord"
         "swaylock"
-        "swaybg -i ${inputs.wallpaper} -m fill"
+        "swaybg -i ${vars.wallpaper} -m fill"
       ];
       input = {
         accel_profile = "flat";

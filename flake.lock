@@ -439,8 +439,7 @@
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_4",
         "stylix": "stylix",
-        "suckless": "suckless",
-        "wallpaper": "wallpaper"
+        "suckless": "suckless"
       }
     },
     "stylix": {
@@ -501,18 +500,6 @@
         "owner": "nix-systems",
         "repo": "default-linux",
         "type": "github"
-      }
-    },
-    "wallpaper": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-0W3Eqvwzid0vOinvkMUD77MjJ+KmUBaeVl0zCfU32Lo=",
-        "type": "file",
-        "url": "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/10.png"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/10.png"
       }
     },
     "wlroots": {

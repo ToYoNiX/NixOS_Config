@@ -1,5 +1,7 @@
 {
   inputs,
+  outputs,
+  vars,
   config,
   lib,
   pkgs,
@@ -8,7 +10,7 @@
 }: {
   stylix = {
     polarity = "dark";
-    image = inputs.wallpaper;
+    image = vars.wallpaper;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     fonts = {
       serif = {
