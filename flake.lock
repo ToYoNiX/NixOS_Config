@@ -506,13 +506,13 @@
     "wallpaper": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-4ijQ17KG7pvLOgCGfQH4+kbZt/MSPDmKOsku1U0G+nI=",
+        "narHash": "sha256-0W3Eqvwzid0vOinvkMUD77MjJ+KmUBaeVl0zCfU32Lo=",
         "type": "file",
-        "url": "file:///home/assem/.setup/wallpapers/static/3.jpg"
+        "url": "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/10.png"
       },
       "original": {
         "type": "file",
-        "url": "file:///home/assem/.setup/wallpapers/static/3.jpg"
+        "url": "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/10.png"
       }
     },
     "wlroots": {

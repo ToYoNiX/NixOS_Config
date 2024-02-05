@@ -32,7 +32,7 @@
         "lxsession"
         "webcord"
         "swaylock"
-        "swaybg -i ${inputs.wallpaper}"
+        "swaybg -i ${inputs.wallpaper} -m fill"
       ];
       input = {
         accel_profile = "flat";

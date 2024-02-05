@@ -37,7 +37,8 @@
 
     # Wallpaper
     wallpaper = {
-      url = "file:///home/assem/.setup/wallpapers/static/3.jpg";
+      # url = "file:///home/assem/.setup/wallpapers/static/3.jpg";
+      url = "https://raw.githubusercontent.com/ChrisTitusTech/nord-background/main/10.png";
       flake = false;
     };
   };

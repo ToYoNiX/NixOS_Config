@@ -29,6 +29,7 @@
     swaybg
     lxsession
     krita
+    wl-clipboard
 
     # Virtialization utils
     qemu
