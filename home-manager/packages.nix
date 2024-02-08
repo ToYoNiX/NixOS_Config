@@ -10,14 +10,11 @@
     tree
     wget
     uget
-    qbittorrent
+    deluge
     btop
     neofetch
     distrobox
     qalculate-gtk
-    libnotify
-    glib
-    gptfdisk
     ffmpeg-full
     cava
     networkmanagerapplet
@@ -26,25 +23,31 @@
     nix-prefetch-git
     nix-prefetch-github
     pulseaudio
-    swaybg
+    feh
     lxsession
     krita
-    wl-clipboard
+    piper
 
     # Virtialization utils
     qemu
     OVMF
     virt-manager
-    looking-glass-client
-    obs-studio-plugins.looking-glass-obs
 
     # Std utils (web browser, file manager, ...)
     pcmanfm
     xarchiver
     unrar
     google-chrome
-    webcord
+    discord
     obsidian
+
+    # Gaming
+    bottles
+    lutris
+    steam
+    heroic
+    mesa
+    wineWowPackages.waylandFull
 
     # Dev utils
     gnumake

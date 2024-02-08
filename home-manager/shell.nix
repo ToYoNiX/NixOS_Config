@@ -4,8 +4,9 @@
   config,
   ...
 }: {
+  home.file."/home/assem/scripts".source = ./../scripts;
   home.sessionVariables = {
-    TERMINAL = "foot";
+    TERMINAL = "alacritty";
   };
 
   programs.neovim = {

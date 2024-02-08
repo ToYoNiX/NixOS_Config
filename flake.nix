@@ -12,7 +12,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
@@ -25,9 +25,6 @@
       url = "github:ToYoNiX/suckless";
       flake = false;
     };
-
-    # Official Hyprland Flake
-    hyprland.url = "github:hyprwm/hyprland";
 
     # Stylix
     stylix.url = "github:danth/stylix";

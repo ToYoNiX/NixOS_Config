@@ -98,17 +98,22 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      default_session = {
-        command = "Hyprland";
-        user = "assem";
-      };
-    };
-  };
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.session = [
+    {
+      manage = "desktop";
+      name = "Dwm";
+      start = ''
+        uget-gtk &
+        lxsession &
+        blueman-applet &
+        discord &
+        deluge &
+        feh --bg-scale ${vars.wallpaper} &
+        sleep 5 && dwmblocks &
+        exec dwm'';
+    }
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -196,11 +201,6 @@
   environment.systemPackages = with pkgs; [];
 
   nixpkgs.overlays = [];
-
-  environment.sessionVariables = {
-    # If cursor becomes invisible
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
 
   # Virtualisation
   virtualisation = {
