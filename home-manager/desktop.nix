@@ -32,7 +32,7 @@
         "uget-gtk"
         "waybar"
         "lxsession"
-        "webcord"
+        "sleep 5 && webcord"
         "swaylock"
         "swaybg -i ${vars.wallpaper} -m fill"
       ];

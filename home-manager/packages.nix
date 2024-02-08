@@ -31,6 +31,13 @@
     krita
     wl-clipboard
 
+    # Virtialization utils
+    qemu
+    OVMF
+    virt-manager
+    looking-glass-client
+    obs-studio-plugins.looking-glass-obs
+
     # Std utils (web browser, file manager, ...)
     pcmanfm
     xarchiver

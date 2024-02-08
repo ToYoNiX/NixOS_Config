@@ -193,14 +193,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # Virtialization utils
-    qemu
-    OVMF
-    virt-manager
-    looking-glass-client
-    obs-studio-plugins.looking-glass-obs
-  ];
+  environment.systemPackages = with pkgs; [];
 
   nixpkgs.overlays = [];
 
