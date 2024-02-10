@@ -38,7 +38,7 @@
     xarchiver
     unrar
     google-chrome
-    discord
+    webcord
     obsidian
 
     # Gaming
@@ -47,7 +47,9 @@
     steam
     heroic
     mesa
-    wineWowPackages.waylandFull
+    winePackages.full
+    protontricks
+    protonup-qt
 
     # Dev utils
     gnumake

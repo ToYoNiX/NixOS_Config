@@ -13,11 +13,11 @@
     ./hardware-configuration.nix
 
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
 
     inputs.home-manager.nixosModules.home-manager
   ];
+
   # Bootloader.
   boot = {
     # Boot Options
@@ -66,9 +66,6 @@
     memoryPercent = 125;
   };
 
-  # Swaylock pam support
-  security.pam.services.swaylock.text = lib.readFile "${pkgs.swaylock-effects}/etc/pam.d/swaylock";
-
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -107,8 +104,10 @@
         uget-gtk &
         lxsession &
         blueman-applet &
-        discord &
+        webcord &
         deluge &
+        steam &
+        heroic &
         feh --bg-scale ${vars.wallpaper} &
         sleep 5 && dwmblocks &
         exec dwm'';

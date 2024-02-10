@@ -231,11 +231,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1707175763,
-        "narHash": "sha256-0MKHC6tQ4KEuM5rui6DjKZ/VNiSANB4E+DJ/+wPS1PU=",
+        "lastModified": 1707467182,
+        "narHash": "sha256-/Bw/xgCXfj4nXDd8Xq+r1kaorfsYkkomMf5w5MpsDyA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f99eace7c167b8a6a0871849493b1c613d0f1b80",
+        "rev": "5b9156fa9a8b8beba917b8f9adbfd27bf63e16af",
         "type": "github"
       },
       "original": {
@@ -390,11 +390,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1707414210,
-        "narHash": "sha256-MJ4deL9tTzowkGpW9Iq+k3cSKo2gnvyIkIuFctNz/dQ=",
+        "lastModified": 1707492526,
+        "narHash": "sha256-i87wM/l56Hrvmr5D41+S7lL0uWBDHQUJGp3dVzKNQXM=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "f3b302dd9bb66fcdd1ed3f185068a5f1000eb863",
+        "rev": "b17c41ca43866609579ea9c9ef96532d8854b85f",
         "type": "github"
       },
       "original": {
@@ -406,11 +406,11 @@
     "suckless": {
       "flake": false,
       "locked": {
-        "lastModified": 1705720437,
-        "narHash": "sha256-384JslnCIjn3de9XwscDzBm1g4l012CYRuNxJgzt0SY=",
+        "lastModified": 1707546528,
+        "narHash": "sha256-czgA29QdWg44HeK4N7DPiv63YrskPxj4CfHPPSvGpC0=",
         "owner": "ToYoNiX",
         "repo": "suckless",
-        "rev": "7382a02377e5b08412f92c4d69c9fa537e127e03",
+        "rev": "7a339a61de412cfc1e9720092fa865905c4eaec9",
         "type": "github"
       },
       "original": {
