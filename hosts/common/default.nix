@@ -54,12 +54,6 @@
     };
   };
 
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-  };
-
   # Swap
   zramSwap = {
     enable = true;
@@ -95,24 +89,8 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "Dwm";
-      start = ''
-        uget-gtk &
-        lxsession &
-        blueman-applet &
-        webcord &
-        deluge &
-        steam &
-        heroic &
-        feh --bg-scale ${vars.wallpaper} &
-        sleep 5 && dwmblocks &
-        exec dwm'';
-    }
-  ];
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

@@ -11,12 +11,6 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
 
-    # Suckless utils
-    suckless = {
-      url = "github:ToYoNiX/suckless";
-      flake = false;
-    };
-
     # Stylix
     stylix.url = "github:danth/stylix";
 
@@ -33,7 +27,7 @@
     inherit (self) outputs;
 
     vars = {
-      wallpaper = ./wallpapers/static/1.jpg;
+      wallpaper = ./wallpapers/4.jpg;
     };
 
     # Supported systems for your flake packages, shell, etc.

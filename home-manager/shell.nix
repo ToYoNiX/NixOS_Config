@@ -5,9 +5,6 @@
   ...
 }: {
   home.file."/home/assem/scripts".source = ./../scripts;
-  home.sessionVariables = {
-    TERMINAL = "alacritty";
-  };
 
   programs.neovim = {
     enable = true;

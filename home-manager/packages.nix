@@ -11,21 +11,15 @@
     wget
     uget
     deluge
-    btop
     neofetch
     distrobox
     qalculate-gtk
     ffmpeg-full
     cava
-    networkmanagerapplet
     obs-studio
     xournalpp
     nix-prefetch-git
     nix-prefetch-github
-    pulseaudio
-    feh
-    lxsession
-    krita
     piper
 
     # Virtialization utils
@@ -34,9 +28,6 @@
     virt-manager
 
     # Std utils (web browser, file manager, ...)
-    pcmanfm
-    xarchiver
-    unrar
     google-chrome
     webcord
     obsidian
@@ -47,7 +38,7 @@
     steam
     heroic
     mesa
-    winePackages.full
+    winePackages.waylandFull
     protontricks
     protonup-qt
 

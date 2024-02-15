@@ -16,6 +16,8 @@
   boot.supportedFilesystems = ["ntfs"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  boot.initrd.kernelModules = ["amdgpu"];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/ROOT";
