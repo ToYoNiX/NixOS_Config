@@ -14,6 +14,7 @@
 
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.common-gpu-amd
 
     inputs.home-manager.nixosModules.home-manager
   ];

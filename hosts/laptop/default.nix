@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -7,16 +8,8 @@
 }: {
   networking.hostName = "laptop"; # Define your hostname.
 
-  imports = [
-    inputs.hardware.nixosModules.common-gpu-amd
-  ];
-
-  # Enable brightness control
-  programs.light.enable = true;
-
   # Enables support for Bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   # Enable autocpu freq
   services.auto-cpufreq.enable = true;
