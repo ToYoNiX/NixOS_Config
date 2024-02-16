@@ -22,11 +22,6 @@
     nix-prefetch-github
     piper
 
-    # Virtialization utils
-    qemu
-    OVMF
-    virt-manager
-
     # Std utils (web browser, file manager, ...)
     google-chrome
     webcord

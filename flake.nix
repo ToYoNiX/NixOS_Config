@@ -13,9 +13,6 @@
 
     # Stylix
     stylix.url = "github:danth/stylix";
-
-    # Fixes OpenGL With Other Distros.
-    nixgl.url = "github:guibou/nixGL";
   };
 
   outputs = {
