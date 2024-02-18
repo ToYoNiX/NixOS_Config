@@ -183,6 +183,8 @@
     virtualgl
     virtualglLib
     virt-manager
+
+    libsForQt5.partitionmanager
   ];
 
   nixpkgs.overlays = [];
