@@ -21,8 +21,16 @@
     nix-prefetch-git
     nix-prefetch-github
     piper
+    swaybg
+    lxsession
+    krita
+    wl-clipboard
 
     # Std utils (web browser, file manager, ...)
+    pcmanfm
+    yazi
+    xarchiver
+    unrar
     google-chrome
     webcord
     obsidian

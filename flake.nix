@@ -1,6 +1,15 @@
 {
   description = "Your new nix config";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://hyprland.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+  };
+
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -10,6 +19,9 @@
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
+
+    # Official Hyprland Flake
+    hyprland.url = "github:hyprwm/hyprland";
 
     # Stylix
     stylix.url = "github:danth/stylix";
@@ -89,7 +101,7 @@
         extraSpecialArgs = {inherit inputs outputs vars;};
         modules = [
           # > Our main home-manager configuration file <
-          ./home-manager/home.nix
+          ./home
           ./stylix
           inputs.stylix.homeManagerModules.stylix
         ];

@@ -51,7 +51,7 @@
     extraSpecialArgs = {inherit inputs outputs vars;};
     users = {
       # Import your home-manager configuration
-      assem = import ../../home-manager/home.nix;
+      assem = import ../../home;
     };
   };
 
@@ -60,6 +60,20 @@
     enable = true;
     memoryPercent = 125;
   };
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  };
+
+  environment.sessionVariables = {
+    # If cursor becomes invisible
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+  # Swaylock pam support
+  security.pam.services.swaylock.text = lib.readFile "${pkgs.swaylock-effects}/etc/pam.d/swaylock";
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -90,11 +104,17 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      default_session = {
+        command = "Hyprland";
+        user = "assem";
+      };
+    };
+  };
+  programs.hyprland.enable = true;
+  programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -183,8 +203,6 @@
     virtualgl
     virtualglLib
     virt-manager
-
-    libsForQt5.partitionmanager
   ];
 
   nixpkgs.overlays = [];
