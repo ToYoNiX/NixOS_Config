@@ -209,8 +209,6 @@
 
   # Virtualisation
   virtualisation = {
-    vmware.host.enable = true;
-
     libvirtd = {
       enable = true;
       qemu = {
