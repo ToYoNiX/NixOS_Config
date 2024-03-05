@@ -17,7 +17,7 @@
     ffmpeg-full
     cava
     obs-studio
-    xournalpp
+    rnote
     nix-prefetch-git
     nix-prefetch-github
     piper
@@ -25,6 +25,7 @@
     lxsession
     krita
     wl-clipboard
+    networkmanagerapplet
 
     # Std utils (web browser, file manager, ...)
     pcmanfm
@@ -46,14 +47,15 @@
     protonup-qt
 
     # Dev utils
+    vscode-fhs
+    alejandra
     gnumake
     cmake
     gcc
     gdb
+    jdk
     pypy3
-    mono5
     python311
-    python311Packages.venvShellHook
-    python311Packages.pip
+    mono5
   ];
 }

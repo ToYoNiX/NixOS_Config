@@ -413,11 +413,7 @@
       display-file-browser-extended = "files";
     };
   };
-
-  programs.vscode = {
-    enable = true;
-  };
-
+ 
   programs.foot.enable = true;
 
   services.avizo.enable = true;
