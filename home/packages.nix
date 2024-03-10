@@ -21,7 +21,6 @@
     rnote
     nix-prefetch-git
     nix-prefetch-github
-    piper
     swaybg
     lxsession
     krita

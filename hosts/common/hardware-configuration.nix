@@ -43,9 +43,6 @@
   # Enable OpenTabletDriver
   hardware.opentabletdriver.enable = true;
 
-  # Enable logitech drivers
-  services.ratbagd.enable = true;
-
   # Enable firmware updates
   services.fwupd.enable = true;
 
