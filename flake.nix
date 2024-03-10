@@ -22,9 +22,6 @@
 
     # Official Hyprland Flake
     hyprland.url = "github:hyprwm/hyprland";
-
-    # Stylix
-    stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -35,9 +32,7 @@
   } @ inputs: let
     inherit (self) outputs;
 
-    vars = {
-      wallpaper = ./wallpapers/4.jpg;
-    };
+    vars = {};
 
     # Supported systems for your flake packages, shell, etc.
     systems = [
@@ -76,8 +71,6 @@
           # > Our main nixos configuration file <
           ./hosts/common
           ./hosts/desktop
-          ./stylix
-          inputs.stylix.nixosModules.stylix
         ];
       };
 
@@ -87,8 +80,6 @@
           # > Our main nixos configuration file <
           ./hosts/common
           ./hosts/laptop
-          ./stylix
-          inputs.stylix.nixosModules.stylix
         ];
       };
     };
@@ -102,8 +93,6 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home
-          ./stylix
-          inputs.stylix.homeManagerModules.stylix
         ];
       };
     };

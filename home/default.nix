@@ -2,7 +2,6 @@
   inputs,
   outputs,
   vars,
-  stylix,
   lib,
   config,
   pkgs,

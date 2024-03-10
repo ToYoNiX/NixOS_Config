@@ -2,7 +2,6 @@
   inputs,
   outputs,
   vars,
-  stylix,
   lib,
   config,
   pkgs,
@@ -10,11 +9,24 @@
 }: {
   services.gnome-keyring.enable = true;
 
+  home.pointerCursor = {
+    gtk.enable = true;
+
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+
+    size = 16;
+  };
+
   gtk = {
     enable = true;
+
+    theme = {
+      name = "FlatColor";
+    };
+
     iconTheme = {
-      name = "Zafiro-icons-Dark";
-      package = pkgs.zafiro-icons;
+      name = "flattrcolor";
     };
   };
 
@@ -27,112 +39,118 @@
     };
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    settings = {
-      exec-once = [
-        "uget-gtk"
-        "waybar"
-        "lxsession"
-        "sleep 5 && webcord"
-        "swaylock"
-        "swaybg -i ${vars.wallpaper} -m fill"
-      ];
-      input = {
-        accel_profile = "flat";
-      };
-      "$MOD" = "SUPER";
-      general = {
-        sensitivity = 1.0;
-        gaps_in = 5;
-        gaps_out = 5;
-        border_size = 3;
-        apply_sens_to_raw = 0;
-        resize_on_border = false;
-      };
-      decoration = {
-        rounding = 0;
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-      };
-      animations = {
-        enabled = true;
-        animation = [
-          "windowsIn,1,6,default,slide"
-          "windowsOut,1,6,default,slide"
-          "windowsMove,1,6,default,slide"
-          "workspaces,1,6,pop,fade"
-        ];
-        bezier = "pop,0.91,0.25,0.06,0.9";
-      };
-      blurls = [
-        "gtk-layer-shell"
-        "ironbar"
-        "rofi"
-        "notifications"
-        "wlogout"
-      ];
-      bind = [
-        "$MOD,RETURN,exec,foot"
-        "$MODSHIFT,Q,killactive,"
-        "$MOD,M,exit,"
-        "$MOD,P,exec,rofi -show drun"
-        "$MOD,B,exec,google-chrome-stable"
-        "$MOD,F,exec,pcmanfm"
-        "$MODSHIFT,F,fullscreen,"
-        "$MOD,V,togglefloating,"
+  # Add all wallpapers to wpgtk
+  home.file."/home/assem/.config/wpg/wallpapers".source = ./../wallpapers;
 
-        # move to workspace
-        "$MOD,1,workspace,1"
-        "$MOD,2,workspace,2"
-        "$MOD,3,workspace,3"
-        "$MOD,4,workspace,4"
-        "$MOD,5,workspace,5"
-        "$MOD,6,workspace,6"
-        "$MOD,7,workspace,7"
-        "$MOD,8,workspace,8"
-        "$MOD,9,workspace,9"
-        "$MOD,0,workspace,10"
+  # Hyprland wpgtk template
+  home.file."/home/assem/.config/wpg/templates/hyprland.conf.base".text = ''
+    $MOD = SUPER
+    general {{
+      gaps_in = 3
+      gaps_out = 8
+      border_size = 2
+      col.active_border = rgb({color11.strip})
+      col.inactive_border = rgb({color0.strip})
+      layout = dwindle
+      resize_on_border = true
+    }}
 
-        # move window to workspace
-        "$MODSHIFT,1,movetoworkspace,1"
-        "$MODSHIFT,2,movetoworkspace,2"
-        "$MODSHIFT,3,movetoworkspace,3"
-        "$MODSHIFT,4,movetoworkspace,4"
-        "$MODSHIFT,5,movetoworkspace,5"
-        "$MODSHIFT,6,movetoworkspace,6"
-        "$MODSHIFT,7,movetoworkspace,7"
-        "$MODSHIFT,8,movetoworkspace,8"
-        "$MODSHIFT,9,movetoworkspace,9"
-        "$MODSHIFT,0,movetoworkspace,10"
+    group {{
+      col.border_active = rgb({color11.strip})
+      col.border_inactive = rgb({color0.strip})
+      col.border_locked_active = rgb({color11.strip})
+      col.border_locked_inactive = rgb({color0.strip})
+    }}
+    animations {{
+      bezier=pop,0.91,0.25,0.06,0.9
+      animation=windowsIn,1,6,default,slide
+      animation=windowsOut,1,6,default,slide
+      animation=windowsMove,1,6,default,slide
+      animation=workspaces,1,6,pop,fade
+      enabled=true
+    }}
 
-        # mouse keybindings
-        "$MOD,mouse_down,workspace,e+1"
-        "$MOD,mouse_up,workspace,e-1"
-      ];
-      binde = [
-        "$MODSHIFT,H,resizeactive, -10 0"
-        "$MODSHIFT,L,resizeactive, 10 0"
-        "$MODSHIFT,K,resizeactive, 0 -10"
-        "$MODSHIFT,J,resizeactive, 0 10"
+    decoration {{
+      drop_shadow=true
+      rounding=0
+      shadow_range=4
+      shadow_render_power=3
+    }}
 
-        "$MODSHIFT,U,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
-        "$MODSHIFT,D,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
-        "$MODSHIFT,M,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioRaiseVolume,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86MonBrightnessUp,exec,light -A 10"
-        ",XF86MonBrightnessDown,exec,light -U 10"
-      ];
-      monitor = ",highrr,auto,1";
-    };
+    general {{
+      apply_sens_to_raw=0
+      border_size=3
+      gaps_in=5
+      gaps_out=5
+      resize_on_border=false
+      sensitivity=1.000000
+    }}
+
+    input {{
+      accel_profile=flat
+    }}
+    bind=$MOD,RETURN,exec,kitty
+    bind=$MODSHIFT,Q,killactive,
+    bind=$MOD,M,exit,
+    bind=$MOD,P,exec,rofi -show drun
+    bind=$MOD,B,exec,google-chrome-stable
+    bind=$MOD,F,exec,pcmanfm
+    bind=$MODSHIFT,F,fullscreen,
+    bind=$MOD,V,togglefloating,
+    bind=$MOD,1,workspace,1
+    bind=$MOD,2,workspace,2
+    bind=$MOD,3,workspace,3
+    bind=$MOD,4,workspace,4
+    bind=$MOD,5,workspace,5
+    bind=$MOD,6,workspace,6
+    bind=$MOD,7,workspace,7
+    bind=$MOD,8,workspace,8
+    bind=$MOD,9,workspace,9
+    bind=$MOD,0,workspace,10
+    bind=$MODSHIFT,1,movetoworkspace,1
+    bind=$MODSHIFT,2,movetoworkspace,2
+    bind=$MODSHIFT,3,movetoworkspace,3
+    bind=$MODSHIFT,4,movetoworkspace,4
+    bind=$MODSHIFT,5,movetoworkspace,5
+    bind=$MODSHIFT,6,movetoworkspace,6
+    bind=$MODSHIFT,7,movetoworkspace,7
+    bind=$MODSHIFT,8,movetoworkspace,8
+    bind=$MODSHIFT,9,movetoworkspace,9
+    bind=$MODSHIFT,0,movetoworkspace,10
+    bind=$MOD,mouse_down,workspace,e+1
+    bind=$MOD,mouse_up,workspace,e-1
+    binde=$MODSHIFT,H,resizeactive, -10 0
+    binde=$MODSHIFT,L,resizeactive, 10 0
+    binde=$MODSHIFT,K,resizeactive, 0 -10
+    binde=$MODSHIFT,J,resizeactive, 0 10
+    binde=$MODSHIFT,U,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
+    binde=$MODSHIFT,D,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+    binde=$MODSHIFT,M,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    binde=,XF86AudioRaiseVolume,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
+    binde=,XF86AudioLowerVolume,exec,wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+    binde=,XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    binde=,XF86MonBrightnessUp,exec,light -A 10
+    binde=,XF86MonBrightnessDown,exec,light -U 10
+    blurls=gtk-layer-shell
+    blurls=ironbar
+    blurls=rofi
+    blurls=notifications
+    blurls=wlogout
+    exec-once=uget-gtk
+    exec-once=lxsession
+    exec-once=sleep 5 && vesktop
+    exec-once=swaylock
+    exec-once=~/.config/wpg/wp_init.sh
+    exec=swaybg -i "$(cat ~/.cache/wal/wal)" -m fill
+    exec=pkill waybar & sleep 1 && waybar
+    monitor=,highrr,auto,1
+  '';
+
+  home.file = {
+    hyprland_template.source = config.lib.file.mkOutOfStoreSymlink /home/assem/.config/wpg/templates/hyprland.conf;
+    hyprland_template.target = "/home/assem/.config/hypr/hyprland.conf";
   };
 
-  stylix.targets.waybar.enable = false;
   programs.waybar = {
     enable = true;
     style = ''
@@ -394,27 +412,30 @@
       indicator-idle-visible = true;
       indicator-radius = 100;
       effect-blur = "7x5";
+      image = "$(cat ~/.cache/wal/wal)";
     };
   };
 
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    terminal = "${pkgs.foot}/bin/foot";
-    plugins = with pkgs; [
-      rofi-emoji
-      rofi-calc
-      rofi-file-browser
-    ];
-    extraConfig = {
-      modi = "drun,emoji,file-browser-extended,window";
-      sidebar-mode = true;
-      show-icons = true;
-      display-file-browser-extended = "files";
-    };
+    terminal = "${pkgs.kitty}/bin/kitty";
   };
- 
-  programs.foot.enable = true;
+  home.file."/home/assem/.config/rofi/config.rasi".text = ''
+    /* Light theme. */
+    @import "~/.cache/wal/colors-rofi-light"
+  '';
+
+  programs.kitty = {
+    enable = true;
+    extraConfig = ''
+      # Color scheme
+      include ~/.cache/wal/colors-kitty.conf
+
+      # Close confirmation 0 disables it; -1 enables it
+      confirm_os_window_close 0
+    '';
+  };
 
   services.avizo.enable = true;
   services.mako.enable = true;

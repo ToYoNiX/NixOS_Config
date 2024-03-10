@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Init icon theme along side with gtk
+wpg-install.sh -ig
+
+# Pick a wallpaper
+wpg -m

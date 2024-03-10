@@ -2,7 +2,6 @@
   inputs,
   outputs,
   vars,
-  stylix,
   lib,
   config,
   pkgs,
@@ -70,6 +69,16 @@
   environment.sessionVariables = {
     # If cursor becomes invisible
     WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+  # Font config
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      serif = ["FiraCode Nerd Font Mono"];
+      sansSerif = ["FiraCode Nerd Font Mono"];
+      monospace = ["FiraCode Nerd Font Mono"];
+    };
   };
 
   # Swaylock pam support
