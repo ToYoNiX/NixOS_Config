@@ -140,12 +140,12 @@
     exec-once=lxsession
     exec-once=sleep 5 && vesktop
     exec-once=swaylock
+    exec-once=gammastep-indicator
     exec-once=~/.config/wpg/wp_init.sh
     exec=swaybg -i "$(cat ~/.cache/wal/wal)" -m fill
     exec=pkill waybar & sleep 1 && waybar
     monitor=,highrr,auto,1
   '';
-
   home.file = {
     hyprland_template.source = config.lib.file.mkOutOfStoreSymlink /home/assem/.config/wpg/templates/hyprland.conf;
     hyprland_template.target = "/home/assem/.config/hypr/hyprland.conf";
