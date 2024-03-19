@@ -91,6 +91,7 @@
     }}
     bind=$MOD,RETURN,exec,kitty
     bind=$MODSHIFT,Q,killactive,
+    bind=$MODSHIFT,V,exec,~/scripts/winStart
     bind=$MOD,M,exit,
     bind=$MOD,P,exec,rofi -show drun
     bind=$MOD,B,exec,google-chrome-stable
@@ -138,7 +139,7 @@
     blurls=wlogout
     exec-once=uget-gtk
     exec-once=lxsession
-    exec-once=sleep 5 && vesktop
+    exec-once=sleep 5 && webcord
     exec-once=swaylock
     exec-once=gammastep-indicator
     exec-once=~/.config/wpg/wp_init.sh

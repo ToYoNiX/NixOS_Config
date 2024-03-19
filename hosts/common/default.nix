@@ -199,6 +199,7 @@
       "disk"
       "kvm"
       "libvirtd"
+      "dialout"
     ];
     # packages = with pkgs; [];
   };
@@ -212,6 +213,7 @@
     virtualgl
     virtualglLib
     virt-manager
+    looking-glass-client
   ];
 
   nixpkgs.overlays = [];

@@ -34,21 +34,11 @@
     xarchiver
     unrar
     google-chrome
-    vesktop
+    webcord
     obsidian
 
-    # Gaming
-    bottles
-    lutris
-    steam
-    heroic
-    mesa
-    winePackages.waylandFull
-    protontricks
-    protonup-qt
-
     # Engineering
-    kicad
+    arduino
 
     # Dev utils
     vscode-fhs
@@ -60,6 +50,8 @@
     jdk
     pypy3
     python311
+    python311Packages.pip
+    python311Packages.ipykernel
     mono5
 
     # Theming with pywal
