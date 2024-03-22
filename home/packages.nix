@@ -19,12 +19,16 @@
     cava
     obs-studio
     rnote
+    xournalpp
     nix-prefetch-git
     nix-prefetch-github
     swaybg
     lxsession
     krita
     wl-clipboard
+    grim
+    slurp
+    swappy
     pavucontrol
     networkmanagerapplet
 

@@ -22,21 +22,12 @@
   boot = {
     # Boot Options
     loader = {
+      systemd-boot.enable = true;
+
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
       };
 
-      grub = {
-        # Grub Dual Boot
-        enable = true;
-        devices = ["nodev"];
-        efiSupport = true;
-
-        # Find All Boot Options
-        useOSProber = true;
-        configurationLimit = 2;
-      };
       timeout = 3;
     };
 

@@ -92,6 +92,7 @@
     bind=$MOD,RETURN,exec,kitty
     bind=$MODSHIFT,Q,killactive,
     bind=$MODSHIFT,V,exec,~/scripts/winStart
+    bind=$MODSHIFT,S,exec,~/scripts/captureArea
     bind=$MOD,M,exit,
     bind=$MOD,P,exec,rofi -show drun
     bind=$MOD,B,exec,google-chrome-stable
