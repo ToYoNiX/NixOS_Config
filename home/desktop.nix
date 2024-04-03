@@ -439,6 +439,15 @@
     '';
   };
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode-fhs;
+    extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+      kamadorueda.alejandra
+    ];
+  };
+
   services.avizo.enable = true;
   services.mako.enable = true;
   services.poweralertd.enable = true;

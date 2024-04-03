@@ -28,6 +28,7 @@
     wl-clipboard
     grim
     slurp
+    imagemagick
     swappy
     pavucontrol
     networkmanagerapplet
@@ -43,21 +44,8 @@
 
     # Engineering
     arduino
-
-    # Dev utils
-    vscode-fhs
-    alejandra
-    gnumake
-    cmake
-    gcc
-    gdb
-    jdk
-    pypy3
-    python311
-    python311Packages.pip
-    python311Packages.ipykernel
-    mono5
-
+    kicad
+    
     # Theming with pywal
     pywal
     wpgtk
